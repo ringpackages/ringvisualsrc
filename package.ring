@@ -22,7 +22,7 @@ aPackageInfo = [
 	],
 	:files = 	[
 		"main.ring",
-		"README.md",
+		"README.md"
 		],
 	:ringfolderfiles = [
 		"visualsrc/build.bat",
