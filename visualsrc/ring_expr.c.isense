@@ -32,7 +32,7 @@ Type: int
 x,nFlag
 ring_parser_factor
 Type: int
-x,x2,x3,nLastOperation,nCount,nNOOP,nToken,nMark,nFlag2
+x,x2,x3,nLastOperation,nCount,nNOOP,nToken,nMark,nFlag2,nThisOrSelfLoadA
 Type: List *
 pLoadAPos, *pList, *pMark,*pAssignmentPointerPos
 Type: char
@@ -43,7 +43,7 @@ Type: char
 cKeyword[100]
 ring_parser_mixer
 Type: int
-x,nCallMethod,nStatus,nFlag
+x,nCallMethod,nStatus,nFlag,nNew
 ring_parser_gencall
 ring_parser_ppmm
 ring_parser_gencallbracemethod
