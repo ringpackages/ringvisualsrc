@@ -46,8 +46,6 @@ x
 Type: Items *
 pItems,*pItemsLast
 ring_list_delete_gc
-Type: Items *
-pItems,*pItemsNext
 ring_list_copy_gc
 Type: int
 x
@@ -65,6 +63,11 @@ pList2
 ring_list_deleteallitems_gc
 Type: Items *
 pItems,*pItemsNext
+ring_list_copy_tohighlevel_gc
+Type: int
+x
+Type: List *
+pNewList2
 ring_list_newitem_gc
 Type: Items *
 pItems
@@ -74,7 +77,6 @@ Type: Items *
 pItems
 Type: Item *
 pItem
-ring_list_setactiveitem
 ring_list_deleteitem_gc
 x
 Type: Items *

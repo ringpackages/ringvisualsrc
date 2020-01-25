@@ -31,11 +31,17 @@ nPrintInstruction : 1
 Type: unsigned int
 nGenObj : 1
 Type: unsigned int
+nGenCObj : 1
+Type: unsigned int
 nWarning : 1
 Type: unsigned int
 nDontDeleteTheVM : 1
 Type: unsigned int
 nRingInsideRing : 1
+Type: unsigned int
+nOnlyTokens : 1
+Type: List *
+pRingFileTokens
 Type: int
 argc
 Type: char  **
@@ -56,8 +62,9 @@ Type: List *
 aCustomGlobalScopeStack
 Type: char
 lRunFromThread
-Type: char
+Type: int
 lLoadAgain
+pLogFile
 END:
 Type: RingState
 struct RingState
@@ -97,12 +104,13 @@ Type: List *
 pList
 ring_state_main
 Type: int
-x,nCGI,nRun,nPrintIC,nPrintICFinal,nTokens,nRules,nIns,nPerformance,nSRC,nGenObj,nWarn
+x,nCGI,nRun,nPrintIC,nPrintICFinal,nTokens,nRules,nIns,nPerformance,nSRC,nGenObj,nGenCObj,nWarn
 Type: char *
 cStr
 ring_state_runfile
 ring_state_runobjectfile
 ring_state_runobjectstring
+ring_state_log
 ring_testallunits
 ring_showtime
 Type: time_t
