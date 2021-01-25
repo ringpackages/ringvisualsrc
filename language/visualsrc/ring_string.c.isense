@@ -14,6 +14,8 @@ String *
 ring_string_tolower(x)
 ring_string_toupper(x)
 ring_string_get(x)
+RING_LOOP_THRESHOLD
+RING_MEMCPY(cStrDest,cStrSrc,nSize)
 ring_string_new_gc
 Type: int
 x
@@ -35,9 +37,7 @@ Type: int
 x
 ring_string_add2_gc
 Type: int
-x
-Type: int
-x2
+x,x2,nOriginalSize
 Type: char *
 cStr
 ring_string_print
@@ -45,13 +45,13 @@ ring_string_setfromint_gc
 cStr[20]
 ring_string_lower
 Type: unsigned int
-x
+x, nLen
 ring_string_lower2
 Type: int
 x
 ring_string_upper
 Type: unsigned int
-x
+x, nLen
 ring_string_upper2
 Type: int
 x
@@ -68,18 +68,11 @@ Type: char *
 cStr4
 Type: char *
 pOutput
-ring_strdup
+ring_string_strdup
 Type: char *
 cString
 Type: int
 x,nSize
-ring_string_test
-nMaxValue
-Type: String *
-mystr[nMaxValue]
-x
-Type: String *
-pString
 ring_string_new2
 ring_string_new
 ring_string_add

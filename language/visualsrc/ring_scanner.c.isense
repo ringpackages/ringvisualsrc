@@ -109,7 +109,6 @@ OP_XOR
 END:
 Type: SCANNER_OPERATOR
 SCANNER_OPERATOR
-RING_SCANNER_DELETELASTTOKEN
 RING_SCANNER_TOKENTYPE
 RING_SCANNER_TOKENVALUE
 SCANNER_TOKEN_KEYWORD
@@ -129,24 +128,11 @@ SCANNER_STATE_LOADSYNTAX
 RING_SCANNER_CHANGERINGKEYWORD
 RING_SCANNER_CHANGERINGOPERATOR
 RING_SCANNER_LOADSYNTAX
+RING_SCANNER_DELETELASTTOKEN
 ring_scanner_new
 Type: Scanner *
 pScanner
 ring_scanner_delete
-ring_scanner_readfile
-Type: RING_FILE
-fp
-c
-Type: Scanner *
-pScanner
-Type: VM *
-pVM
-nCont,nRunVM,nFreeFilesList
-cStartup
-Type: int
-x,nSize
-Type: char
-cFileName2[200]
 ring_scanner_readchar
 Type: char
 cStr[2]
@@ -167,9 +153,7 @@ Type: char
 cStr[5]
 ring_scanner_isnumber
 Type: unsigned int
-x
-Type: unsigned int
-x2
+x,x2,lHex
 ring_scanner_checklasttoken
 ring_scanner_isoperator
 Type: int
@@ -205,15 +189,7 @@ Type: List *
 pList
 Type: char *
 cString
-ring_execute
-Type: RingState *
-pRingState
 ring_scanner_getkeywordtext
-ring_scanner_runobjfile
-ring_scanner_runobjstring
-ring_scanner_runprogram
-Type: VM *
-pVM
 ring_scanner_changekeyword
 Type: char *
 cStr
@@ -241,7 +217,7 @@ c
 Type: int
 nSize
 Type: char
-cFileName2[200]
+cFileName2[RING_PATHSIZE]
 Type: unsigned int
 x
 ring_scanner_readtwoparameters

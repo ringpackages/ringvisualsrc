@@ -17,9 +17,21 @@ RING_TRACKALLOCATIONS
 RING_POOLMANAGER_ITEMSINBLOCK
 RING_POOLMANAGER_ITEMSIZE
 Parent: PoolData
+Parent: PoolDataTypes
+Type: String
+vString
+Type: Item
+vItem
+Type: Items
+vItems
+Type: List
+vList
+Type: HashTable
+vHashTable
+Type: HashItem
+vHashItem
 Type: char
 cChar[RING_POOLMANAGER_ITEMSIZE]
-Parent: PoolDataTypes
 END:
 Type: struct PoolData *
 pNext
@@ -81,7 +93,13 @@ pItem
 ring_vm_gc_deleteitem_gc
 ring_vm_gc_killreference
 Type: List *
-pList
+pList, *pList2
+Type: Item *
+pItem
+Type: char *
+newstr
+Type: char
+cStr[2]
 ring_vm_gc_deletetemplists
 ring_vm_gc_newitemreference
 ring_vm_gc_freefunc
@@ -104,6 +122,12 @@ Type: RingState *
 pRingState
 ring_state_calloc
 ring_state_realloc
+Type: void *
+pMemory
+Type: PoolData *
+pPoolData
+Type: int
+x
 ring_state_registerblock
 Type: List *
 pList
@@ -126,6 +150,7 @@ x
 ring_poolmanager_allocate
 Type: void *
 pMemory
+ring_poolmanager_find
 ring_poolmanager_free
 Type: PoolData *
 pPoolData
