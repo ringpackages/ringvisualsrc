@@ -67,6 +67,10 @@ nLoadAgain
 pLogFile
 Type: unsigned int
 lNotCaseSensitive : 1
+Type: unsigned int
+lCommentsAsTokens : 1
+Type: unsigned int
+nScannerError
 END:
 Type: RingState
 struct RingState
@@ -76,8 +80,8 @@ struct RingState *
 Type: RingState
 Mark: ->
 RingState *
-RING_STATE_CHECKPRINTRULES
 RING_STATE_VERSION
+RING_STATE_CHECKPRINTRULES
 Type: static int
 nRingStateDEBUGSEGFAULT
 Type: static int
@@ -130,3 +134,14 @@ pVM
 ring_state_log
 ring_state_cgiheader
 ring_state_segfaultaction
+ring_state_runstring
+c
+Type: Scanner *
+pScanner
+Type: VM *
+pVM
+nCont,nRunVM,nFreeFilesList
+Type: int
+x
+Type: const char *
+cFileName

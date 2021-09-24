@@ -53,3 +53,8 @@ ring_vm_strcmpnotcasesensitive
 Type: int
 nNum1
 ring_vm_cleansetpropertylist
+ring_vm_isoperationaftersublist
+Type: int
+nOPCode
+Type: List *
+pParent, *pSub, *pVar

@@ -66,3 +66,5 @@ Type: struct timespec
 ts
 Type: LARGE_INTEGER
 ElapsedMicroseconds
+Type: unsigned int
+nNum
