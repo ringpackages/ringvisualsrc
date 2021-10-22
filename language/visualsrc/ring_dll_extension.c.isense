@@ -1,4 +1,4 @@
-ring_vmdll_h
+ring_dll_extension_h
 LoadDLL(x)
 GetDLLFunc
 CloseDLL

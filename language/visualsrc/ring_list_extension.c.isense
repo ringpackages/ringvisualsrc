@@ -1,4 +1,4 @@
-ring_vmlistfuncs_h
+ring_list_extension_h
 ring_vm_listfuncs_loadfunctions
 ring_vm_listfuncs_add
 Type: List *
