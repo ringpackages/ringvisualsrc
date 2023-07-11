@@ -4,13 +4,17 @@ pList
 ring_vm_checknull
 Type: List *
 pVar
+Type: String *
+pString
 ring_vm_varpushv
 Type: List *
 pVar, *pList
 ring_vm_loadaddress
+Type: int
+lFound
 ring_vm_assignment
 Type: List *
-pVar,*pList
+pVar,*pList, *pList2
 Type: String *
 cStr1, *pString
 Type: double
@@ -36,7 +40,7 @@ ring_vm_list_copy
 Type: int
 x,nMax
 Type: List *
-pNewList2
+pNewList2, *pSourceList
 Type: Item *
 pItem
 ring_vm_list_simpointercopy
@@ -74,3 +78,16 @@ pItem
 Type: int
 x
 ring_vm_freeloadaddressscope
+ring_vm_loadaddressfirst
+ring_vm_printstack
+Type: int
+x,nSP
+ring_vm_len
+Type: int
+nSize
+Type: List *
+pVar, *pList
+Type: Item *
+pItem
+Type: String *
+pString

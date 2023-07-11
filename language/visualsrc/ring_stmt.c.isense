@@ -1,13 +1,13 @@
 ring_parser_class
 Type: List *
-pList,*pList2,*pList3
+pList,*pList2,*pList3,*pMark,*pNewClass
 Type: int
 x
 Type: String *
 pString
 ring_parser_stmt
 Type: int
-x,nMark1,nMark2,nMark3,nStart,nEnd,nPerformanceLocations,nFlag,nLoadPackage,nLoopOrExitCommand,nLoadAgain,nForInVarsCount,nVar
+x,nMark1,nMark2,nMark3,nStart,nEnd,nFlag,nLoadPackage,nLoopOrExitCommand,nLoadAgain,nForInVarsCount,nVar,nLine
 Type: String *
 pString
 Type: List *

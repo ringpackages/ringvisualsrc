@@ -1,21 +1,54 @@
 ring_vmgcdata
-Parent: GCData
-Type: int
+Parent: ItemGCData
+Type: unsigned int
 nReferenceCount
 END:
-Type: GCData
-struct GCData
-Type: GCData
+Type: ItemGCData
+struct ItemGCData
+Type: ItemGCData
 Mark: ->
-struct GCData *
-Type: GCData
+struct ItemGCData *
+Type: ItemGCData
 Mark: ->
-GCData *
+ItemGCData *
+Parent: ListGCData
+Type: void *
+pContainer
+Type: int
+nReferenceCount
+Type: int
+nTempRC
+Type: unsigned int
+lCopyByRef: 1
+Type: unsigned int
+lNewRef: 1
+Type: unsigned int
+lDontDelete: 1
+Type: unsigned int
+lDeleteContainerVariable: 1
+Type: unsigned int
+lDontRef: 1
+Type: unsigned int
+lErrorOnAssignment: 1
+Type: unsigned int
+lDeletedByParent: 1
+Type: unsigned int
+lDontRefAgain: 1
+END:
+Type: ListGCData
+struct ListGCData
+Type: ListGCData
+Mark: ->
+struct ListGCData *
+Type: ListGCData
+Mark: ->
+ListGCData *
 ring_pooldata
+RING_USEPOOLMANAGER
 RING_USEPOOLMANAGER
 RING_TRACKALLOCATIONS
 RING_POOLMANAGER_ITEMSINBLOCK
-RING_POOLMANAGER_ITEMSIZE
+RING_POOLMANAGER_ITEMSTRINGSIZE
 Parent: PoolData
 Parent: PoolDataTypes
 Type: String
@@ -31,7 +64,7 @@ vHashTable
 Type: HashItem
 vHashItem
 Type: char
-cChar[RING_POOLMANAGER_ITEMSIZE]
+cChar[RING_POOLMANAGER_ITEMSTRINGSIZE]
 END:
 Type: struct PoolData *
 pNext
@@ -104,6 +137,84 @@ ring_vm_gc_deletetemplists
 ring_vm_gc_newitemreference
 ring_vm_gc_freefunc
 ring_vm_gc_setfreefunc
+ring_vm_gc_deletelistinitem
+ring_vm_gc_listpointerismine
+Type: Item *
+pItem
+ring_vm_gc_listpointerisnotmine
+Type: Item *
+pItem
+ring_list_iscopybyref
+ring_list_enablecopybyref
+ring_list_disablecopybyref
+ring_list_acceptlistbyref_gc
+Type: List *
+pRealList
+Type: Item *
+pItem
+ring_list_setlistbyref_gc
+ring_list_updaterefcount_gc
+ring_list_newref_gc
+ring_list_isref
+ring_list_assignreftovar_gc
+ring_list_assignreftoitem_gc
+Type: List *
+pList
+ring_list_isrefcontainer
+ring_list_clearrefdata
+ring_list_deleteref_gc
+Type: List *
+pVariable
+Type: int
+nOPCode
+ring_list_getrefcontainer
+ring_list_collectcycles_gc
+Type: List *
+aProcess, *pActiveList, *pSubList
+Type: int
+x,y,lDelete
+Type: Item *
+pItem
+ring_list_containssublist_gc
+Type: List *
+aProcess, *pActiveList, *pSubList
+Type: int
+x,y,lFound
+ring_list_iscircular_gc
+ring_list_checkrefinleftside
+ring_list_checkrefvarinleftside
+ring_list_getrefcount
+ring_list_isrefparameter
+Type: int
+lRef
+Type: List *
+pRef, *pVar, *pList
+ring_list_isdontref
+ring_list_enabledontref
+ring_list_disabledontref
+ring_list_disablelnewref
+ring_list_resetlnewref
+Type: List *
+pList
+ring_list_isnewref
+ring_list_isdontrefagain
+ring_list_enabledontrefagain
+ring_list_disabledontrefagain
+ring_vm_checkvarerroronassignment
+Type: List *
+pList
+ring_vm_checkitemerroronassignment
+Type: List *
+pList
+ring_vm_checkbeforeassignment
+ring_vm_removelistprotection
+Type: int
+x
+Type: List *
+pList
+ring_vm_removelistprotectionat
+Type: List *
+pList
 ring_malloc
 Type: void *
 pMemory

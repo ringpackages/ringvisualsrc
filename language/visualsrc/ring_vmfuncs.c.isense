@@ -20,9 +20,15 @@ oTempItem
 ring_vm_returnnull
 ring_vm_newfunc
 Type: int
-x,nSP
+x,nSP,nMax
 Type: List *
-pList
+pList, *aParameters,*aRefList,*pVar,*pRef
+Type: String *
+pParameter
+Type: char *
+cParameters
+Type: char
+cStr[2]
 ring_vm_blockflag
 ring_vm_blockflag2
 Type: List *
@@ -37,7 +43,9 @@ Type: List *
 pList,*pList2,*pList3
 ring_vm_createtemplist
 Type: List *
-pList
+pList, *pList2
+Type: int
+x,lFound
 ring_vm_saveloadaddressscope
 ring_vm_restoreloadaddressscope
 ring_vm_anonymous
@@ -51,6 +59,10 @@ Type: int
 x
 ring_vm_freetemplists
 Type: List *
-pTempMem
+pTempMem, *pList, *pList2
 Type: int
-x,nStart
+x,x2,lFound,nStart,lMutex
+ring_vm_endfuncexec
+ring_vm_retitemref
+Type: List *
+pList

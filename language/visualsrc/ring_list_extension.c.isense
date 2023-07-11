@@ -3,6 +3,8 @@ ring_vm_listfuncs_loadfunctions
 ring_vm_listfuncs_add
 Type: List *
 pList,*pList2
+Type: Item *
+pItem
 Type: VM *
 pVM
 ring_vm_listfuncs_del
@@ -13,8 +15,10 @@ nNum1
 ring_vm_listfuncs_swap
 Type: List *
 pList
-Type: int
-nNum1,nNum2,nSize
+Type: double
+nNum1,nNum2
+Type: unsigned int
+nSize
 ring_vm_listfuncs_list
 Type: List *
 pList, *pList2
@@ -27,8 +31,8 @@ pItem
 Type: VM *
 pVM
 ring_vm_listfuncs_find
-Type: int
-nNum1,nColumn
+Type: unsigned int
+nNum1, nColumn
 Type: List *
 pList
 ring_vm_listfuncs_min
@@ -36,34 +40,56 @@ Type: double
 nNum1
 Type: List *
 pList
-Type: int
+Type: unsigned int
 x
 ring_vm_listfuncs_max
 Type: double
 nNum1
 Type: List *
 pList
-Type: int
+Type: unsigned int
 x
 ring_vm_listfuncs_insert
 Type: List *
 pList, *pList2
-Type: int
+Type: unsigned int
 nPos
+Type: double
+x
+Type: Item *
+pItem
+Type: VM *
+pVM
 ring_vm_listfuncs_sort
 Type: List *
 pList, *pList2, *pList3
 Type: int
-x,nParaCount,nColumn,nPos
+nParaCount
+Type: unsigned int
+x, nPos, nColumn
 Type: char *
 cAttribute
+Type: VM *
+pVM
 ring_vm_listfuncs_binarysearch
 Type: List *
 pList, *pList2
 Type: int
-x,nParaCount,nColumn
+nParaCount
+Type: unsigned int
+x, nColumn
 ring_vm_listfuncs_reverse
 Type: List *
 pList,*pList2,*pList3
-Type: int
+Type: unsigned int
 x
+Type: Item *
+pItem
+Type: VM *
+pVM
+ring_vm_listfuncs_reference
+Type: List *
+pList
+ring_vm_listfuncs_refcount
+Type: List *
+pList

@@ -247,6 +247,8 @@ ring_vm_generallib_object2pointer
 Type: List *
 pList
 ring_vm_generallib_pointer2object
+Type: List *
+pList
 ring_vm_generallib_nullpointer
 ring_vm_generallib_space
 Type: char *
@@ -353,15 +355,25 @@ cLine
 ring_vm_generallib_print
 Type: List *
 pList
-cStr
-Type: char *
-cString
-Type: int
-x,nSize,nPos
-cCode
+Type: char
+cStr[100]
 Type: VM *
 pVM
 ring_vm_generallib_print2str
+ring_vm_generallib_puts
+Type: List *
+pList
+Type: char
+cStr[100]
+Type: VM *
+pVM
+ring_vm_generallib_getnumber
+Type: int
+x
+cLine
+Type: double
+nNum
+ring_vm_generallib_customprint
 cStr
 Type: int
 x,nSize,nPos
@@ -372,13 +384,6 @@ Type: String *
 pRingCode
 Type: VM *
 pVM
-ring_vm_generallib_puts
-ring_vm_generallib_getnumber
-Type: int
-x
-cLine
-Type: double
-nNum
 ring_vm_generallib_checkoverflow
-ring_vm_generallib_addsublistsbymove
-ring_vm_generallib_addsublistsbyfastcopy
+ring_vm_generallib_bymoveaddsublists
+ring_vm_generallib_byfastcopyaddsublists

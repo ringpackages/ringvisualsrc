@@ -17,8 +17,10 @@ Type: void *
 pPointer
 Type: struct List *
 pList
+Type: float
+fNumber
 END:
-Type: GCData
+Type: ItemGCData
 gc
 END:
 Type: Item
@@ -38,6 +40,7 @@ ITEMTYPE_FUNCPOINTER
 ITEM_NUMBERFLAG_NOTHING
 ITEM_NUMBERFLAG_INT
 ITEM_NUMBERFLAG_DOUBLE
+ITEM_OBJTYPE_NOTHING
 ring_item_getstring(x)
 ring_item_getnumber(x)
 ring_item_getdouble(x)
@@ -62,8 +65,11 @@ Type: Item *
 pItem
 ring_item_delete_gc
 ring_item_print
+Type: unsigned int
 ItemType
-ring_item_content_delete_gc
+ring_item_deletecontent_gc
+Type: int
+nType
 ring_item_settype_gc
 ring_itemarray_setint_gc
 ring_itemarray_setpointer_gc
@@ -78,7 +84,7 @@ ring_item_setint_gc
 ring_item_new
 ring_item_delete
 ring_item_settype
-ring_item_content_delete
+ring_item_deletecontent
 ring_itemarray_setint
 ring_itemarray_setpointer
 ring_itemarray_setdouble

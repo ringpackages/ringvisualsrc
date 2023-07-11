@@ -48,20 +48,20 @@ Type: List *
 pList3,*pList4
 ring_vm_oop_aftercallmethod
 ring_vm_oop_printobj
-Type: List *
-pList2,*pList3
-Type: int
-x
-Type: char
-cStr[100]
 ring_vm_oop_setbraceobj
 ring_vm_oop_bracestart
 Type: List *
-pList,*pClass
+pList, *pVar, *pStateList
+Type: Item *
+pItem
+Type: int
+lShowError
 ring_vm_oop_braceend
 Type: List *
 pList
 ring_vm_oop_bracestack
+Type: List *
+pList
 ring_vm_oop_newsuperobj
 Type: List *
 pSuper,*pSuper2,*pMethods,*pList
@@ -113,16 +113,22 @@ ring_vm_oop_setget
 Type: List *
 pList, *pList2
 Type: Item *
-pItem, *pItem2
+pGetSetItem
 Type: String *
 pString, *pString2
+Type: RING_VM_IR_ITEMTYPE *
+pItem, *pItem2
+Type: int
+nIns
 ring_vm_oop_setproperty
 Type: List *
 pList, *pList2
-Type: Item *
-pItem,*pItem2
+Type: RING_VM_IR_ITEMTYPE *
+pItem, *pRegItem
 Type: String *
 pString
+Type: int
+nIns, nIns2
 ring_vm_oop_objvarfromobjlist
 Type: int
 nType
@@ -139,10 +145,12 @@ Type: List *
 pList2
 Type: Item *
 pItem
+Type: RING_VM_IR_ITEMTYPE *
+pRegItem
 Type: String *
 pString
 Type: int
-nObjType
+nObjType, nIns
 ring_vm_oop_callmethodfrombrace
 Type: List *
 pList,*pList2
@@ -162,3 +170,9 @@ pList, *pThis
 ring_vm_oop_setthethisvariableinclassregion
 Type: List *
 pList, *pThis
+ring_vm_oop_callingclassmethodfromclassregion
+Type: List *
+pList, *pThis, *pClass, *pVar
+Type: Item *
+pItem
+ring_vm_oop_callclassinit

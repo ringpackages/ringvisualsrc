@@ -9,6 +9,7 @@ Type: List *
 Tokens
 Type: String *
 ActiveToken
+Type: unsigned int
 LinesCount
 FloatMark
 Type: char
@@ -17,9 +18,9 @@ Type: char
 cMLComment
 Type: RingState *
 pRingState
-Type: int
+Type: unsigned int
 nTokenIndex
-Type: int
+Type: unsigned int
 nLiteralLine
 END:
 Type: Scanner
@@ -227,11 +228,12 @@ Type: RING_FILE
 fp
 c
 Type: int
-nSize
+nSize,nLine
 Type: char
 cFileName2[RING_PATHSIZE]
 Type: unsigned int
 x
+ring_scanner_setandgenendofline
 ring_scanner_readtwoparameters
 Type: int
 x,nSize,nSpaces
