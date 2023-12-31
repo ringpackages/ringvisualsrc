@@ -34,6 +34,9 @@ pList
 ring_vm_addnewpointervar
 Type: List *
 pList
+ring_vm_addnewlistvar
+Type: List *
+pList
 ring_vm_newtempvar
 Type: List *
 pList
@@ -41,6 +44,20 @@ ring_vm_addnewcpointervar
 Type: List *
 pList, *pList2
 ring_vm_deletescope
+ring_vm_var_setprivateflag
+ring_vm_var_getprivateflag
+ring_vm_addstringarg
+Type: List *
+pList, *pParent
+ring_vm_addnumberarg
+Type: List *
+pList, *pParent
+ring_vm_addpointerarg
+Type: List *
+pList, *pParent
+ring_vm_addlistarg
+Type: List *
+pList, *pParent
 ring_vm_newglobalscope
 ring_vm_endglobalscope
 ring_vm_setglobalscope

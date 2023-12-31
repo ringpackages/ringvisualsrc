@@ -153,6 +153,8 @@ Type: int
 x
 Type: char *
 cStr
+Type: VM *
+pVM
 ring_vm_refmeta_isprivatemethod
 Type: List *
 pList
@@ -205,6 +207,11 @@ pVM
 ring_vm_refmeta_importpackage
 Type: VM *
 pVM
+ring_vm_refmeta_parentclassname
+Type: List *
+pList
+Type: char *
+cStr
 ring_vm_refmeta_ringvmfileslist
 Type: VM *
 pVM
@@ -214,7 +221,11 @@ ring_vm_refmeta_ringvmcalllist
 Type: VM *
 pVM
 Type: List *
-pList
+pList, *pList2
+Type: int
+x
+Type: FuncCall *
+pFuncCall
 ring_vm_refmeta_ringvmmemorylist
 Type: VM *
 pVM
@@ -263,7 +274,7 @@ ring_vm_refmeta_ringvmevalinscope
 Type: VM *
 pVM
 Type: List *
-pActiveMem,*pState
+pActiveMem
 Type: const char *
 cStr
 Type: int
@@ -272,6 +283,8 @@ Type: Items *
 pLastItem
 Type: Items *
 pNextItem
+Type: VMState *
+pVMState
 ring_vm_refmeta_ringvmpasserror
 Type: VM *
 pVM

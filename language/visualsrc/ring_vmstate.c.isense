@@ -7,13 +7,15 @@ Type: Item *
 pItem
 ring_vm_restorestate
 Type: List *
-pThis,*pFuncList,*pNewObj
+pThis,*pFuncList
 Type: VMState *
 pVMState, *pVMStateForFunc, *pVMStateForObj
 Type: int
 x
 Type: List *
 aListsToDelete, *pListPointer
+Type: FuncCall *
+pFuncCall
 ring_vm_savestateforfunctions
 Type: List *
 pThis
@@ -28,19 +30,17 @@ Type: VMState *
 pVMState
 ring_vm_savestatefornewobjects
 Type: List *
-pList, *pThis
+pThis
 Type: VMState *
 pVMState
 Type: Item *
 pItem
 ring_vm_restorestatefornewobjects
 Type: List *
-pList, *pThis
+pThis
 Type: VMState *
 pVMState
 ring_vm_newobjectstackpointer
-Type: List *
-pList
 Type: VMState *
 pVMState
 ring_vm_savestateforbraces
@@ -52,8 +52,6 @@ pObject
 Type: int
 lDontRef,lDontRefAgain
 ring_vm_backstate
-Type: int
-nLimit,y
 ring_vm_savestack
 Type: int
 nSP

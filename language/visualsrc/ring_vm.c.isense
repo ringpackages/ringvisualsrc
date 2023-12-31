@@ -5,8 +5,6 @@ RING_VM_STACK_SIZE
 RING_VM_STACK_CHECKOVERFLOW
 RING_VM_FREE_STACK_IN_CLASS_REGION_AFTER
 RING_VM_BC_ITEMS_COUNT
-RING_VM_STATE_NUMBERS_COUNT
-RING_VM_STATE_POINTERS_COUNT
 RING_VM_MAXDIGITSINNUMBER
 RING_VM_REGTYPE_NOTHING
 RING_VM_REGTYPE_INT
@@ -14,28 +12,36 @@ RING_VM_REGTYPE_DOUBLE
 RING_VM_REGTYPE_STRING
 RING_VM_REGTYPE_POINTER
 Parent: Register
+Type: int
+aNumber[2]
+Type: int
+iNumber
 Type: String *
 pString
 Type: double
 dNumber
-Type: int
-iNumber
 Type: void *
 pPointer
 END:
 Type: Register
 Register
 Parent: ByteCode
-Type: char
+Type: unsigned char
 nOPCode
+Type: unsigned char
+nFlagReg
 Type: unsigned int
-nInsSize:3
+nIntReg
+Type: unsigned int
+nInsSize:4
 Type: unsigned int
 nReg1Type:3
 Type: unsigned int
 nReg2Type:3
 Type: unsigned int
 nReg3Type:3
+Type: unsigned int
+nReg4Type:3
 Type: Register
 aReg[RING_VM_BC_ITEMS_COUNT]
 END:
@@ -48,8 +54,8 @@ Type: ByteCode
 Mark: ->
 ByteCode *
 Parent: VM
-Type: unsigned int
-nPC
+Type: RingState *
+pRingState
 Type: List *
 pCode
 Type: List *
@@ -57,165 +63,109 @@ pFunctionsMap
 Type: List *
 pClassesMap
 Type: List *
-pPackagesMap
-Type: unsigned int
-nOPCode
-Type: Item
-aStack[RING_VM_STACK_SIZE]
-Type: unsigned int
-nSP
-Type: List *
 pMem
 Type: List *
-pActiveMem
+pPackagesMap
 Type: List *
 pTempMem
-Type: ByteCode *
-pByteCode
-Type: ByteCode *
-pByteCodeIR
-Type: char *
-cFileName
-Type: unsigned int
-nLineNumber
-Type: unsigned int
-nListStart
 Type: List *
 pNestedLists
-Type: unsigned int
-nBlockFlag
 Type: List *
 aPCBlockFlag
 Type: List *
 pFuncCallList
-Type: unsigned int
-nFuncSP
-Type: unsigned int
-nFuncExecute
 Type: List *
 pCFunctionsList
 Type: List *
 pExitMark
 Type: List *
 pLoopMark
-Type: unsigned int
-nCallMainFunction
 Type: List *
 pTry
 Type: List *
 aScopeNewObj
-Type: unsigned char
-nCallMethod
 Type: List *
 pObjState
 Type: List *
 pBraceObject
 Type: List *
 aBraceObjects
-Type: unsigned int
-nVarScope
-Type: unsigned int
-nScopeID
 Type: List *
-aScopeID
-Type: unsigned int
-nActiveScopeID
-Type: unsigned int
-nActiveCatch
-Type: unsigned char
-nInsideBraceFlag
-Type: unsigned char
-nInClassRegion
+pActiveMem
 Type: List *
 aActivePackage
-Type: unsigned char
-nPrivateFlag
-Type: unsigned char
-nGetSetProperty
-Type: void *
-pGetSetObject
-Type: unsigned char
-nGetSetObjType
 Type: List *
 aSetProperty
-Type: void *
-pAssignment
 Type: List *
 aForStep
-Type: unsigned char
-nFirstAddress
-Type: unsigned char
-nBeforeEqual
-Type: unsigned char
-nNOAssignment
-Type: RingState *
-pRingState
-Type: unsigned int
-nLoadAddressScope
 Type: List *
 aBeforeObjState
 Type: List *
-aAddressScope
-Type: unsigned int
-nFuncExecute2
-Type: List *
 pCLibraries
-Type: unsigned char
-nEvalCalledFromRingCode
-Type: unsigned char
-nDecimals
-Type: unsigned char
-nEvalReallocationFlag
-Type: unsigned int
-nEvalReallocationSize
-Type: unsigned int
-nCFuncParaCount
-Type: unsigned char
-nIgnoreNULL
-Type: unsigned int
-nEvalReturnPC
-Type: unsigned char
-nRetItemRef
-Type: void *
-pMutex
-Type: unsigned char
-nIgnoreCPointerTypeCheck
-Type: unsigned char
-nCallClassInit
-Type: unsigned char
-nRetEvalDontDelete
-Type: char *
-cPrevFileName
-Type: unsigned char
-nRunCode
-Type: unsigned char
-nActiveError
-Type: String *
-pPackageName
-Type: unsigned char
-lTrace
-Type: String *
-pTrace
-Type: unsigned char
-lTraceActive
-Type: unsigned char
-nTraceEvent
 Type: List *
 pTraceData
-Type: unsigned char
-nEvalInScope
-Type: unsigned char
-lPassError
-Type: unsigned char
-lHideErrorMsg
 Type: List *
 aGlobalScopes
 Type: List *
 aActiveGlobalScopes
-Type: unsigned int
-nCurrentGlobalScope
+Type: List *
+aDeleteLater
+Type: String *
+pPackageName
+Type: String *
+pTrace
+Type: ByteCode *
+pByteCode
+Type: ByteCode *
+pByteCodeIR
+Type: char *
+cFileName
+Type: char *
+cPrevFileName
 Type: char *
 cFileNameInClassRegion
+Type: void *
+pGetSetObject
+Type: void *
+pAssignment
+Type: void *
+pMutex
+Type: unsigned int
+nCurrentGlobalScope
+Type: unsigned int
+nOPCode
+Type: unsigned int
+nSP
+Type: unsigned int
+nLineNumber
+Type: unsigned int
+nListStart
+Type: unsigned int
+nBlockFlag
+Type: unsigned int
+nFuncSP
+Type: unsigned int
+nFuncExecute
+Type: unsigned int
+nCallMainFunction
+Type: unsigned int
+nVarScope
+Type: unsigned int
+nScopeID
+Type: unsigned int
+nActiveScopeID
+Type: unsigned int
+nActiveCatch
+Type: unsigned int
+nLoadAddressScope
+Type: unsigned int
+nEvalReallocationSize
+Type: unsigned int
+nCFuncParaCount
+Type: unsigned int
+nEvalReturnPC
+Type: unsigned int
+nPC
 Type: unsigned char
 lUsePushPLocal
 Type: unsigned char
@@ -236,8 +186,58 @@ Type: unsigned char
 lDontMoveToPrevScope
 Type: unsigned char
 lSelfLoadA
-Type: List *
-aDeleteLater
+Type: unsigned char
+nCallMethod
+Type: unsigned char
+nInsideBraceFlag
+Type: unsigned char
+nInClassRegion
+Type: unsigned char
+nPrivateFlag
+Type: unsigned char
+nGetSetProperty
+Type: unsigned char
+nGetSetObjType
+Type: unsigned char
+nFirstAddress
+Type: unsigned char
+nBeforeEqual
+Type: unsigned char
+nNOAssignment
+Type: unsigned char
+nEvalCalledFromRingCode
+Type: unsigned char
+nDecimals
+Type: unsigned char
+nEvalReallocationFlag
+Type: unsigned char
+nIgnoreNULL
+Type: unsigned char
+nRetItemRef
+Type: unsigned char
+nIgnoreCPointerTypeCheck
+Type: unsigned char
+nCallClassInit
+Type: unsigned char
+nRetEvalDontDelete
+Type: unsigned char
+nRunCode
+Type: unsigned char
+nActiveError
+Type: unsigned char
+lTrace
+Type: unsigned char
+lTraceActive
+Type: unsigned char
+nTraceEvent
+Type: unsigned char
+nEvalInScope
+Type: unsigned char
+lPassError
+Type: unsigned char
+lHideErrorMsg
+Type: Item
+aStack[RING_VM_STACK_SIZE]
 END:
 Type: VM
 struct VM
@@ -247,20 +247,52 @@ struct VM *
 Type: VM
 Mark: ->
 VM *
-Parent: VMState
-Type: int
-aNumbers[RING_VM_STATE_NUMBERS_COUNT]
-Type: void *
-aPointers[RING_VM_STATE_POINTERS_COUNT]
+Parent: FuncCall
+Type: const char *
+cName
+Type: char *
+cFileName
+Type: char *
+cNewFileName
+Type: List *
+pTempMem
+Type: List *
+pNestedLists
+Type: VMState *
+pVMState
+Type: unsigned int
+nPC
+Type: unsigned int
+nSP
+Type: unsigned int
+nLineNumber
+Type: unsigned int
+nCallerPC
+Type: unsigned int
+nFuncExec
+Type: unsigned int
+nTempMemSizeAtStart
+Type: unsigned int
+nListStart
+Type: char
+nType
+Type: char
+nMethodOrFunc
+Type: char
+nStatus
+Type: char
+nLoadAddressScope
 END:
-Type: VMState
-struct VMState
-Type: VMState
+Type: FuncCall
+struct FuncCall
+Type: FuncCall
 Mark: ->
-struct VMState *
-Type: VMState
+struct FuncCall *
+Type: FuncCall
 Mark: ->
-VMState *
+FuncCall *
+RING_VM_SP_INC
+RING_VM_SP_VALUE
 RING_VM_STACK_PUSHC
 RING_VM_STACK_PUSHN
 RING_VM_STACK_PUSHP
@@ -277,10 +309,12 @@ RING_VM_STACK_SETPVALUE(x)
 RING_VM_STACK_SETCVALUE2(x,y)
 RING_VM_STACK_SETCSIZE(x)
 RING_VM_STACK_PUSHCVALUE2(x,y)
-RING_VM_STACK_PUSH
 RING_VM_STACK_ISSTRING
 RING_VM_STACK_ISNUMBER
 RING_VM_STACK_ISPOINTER
+RING_VM_STACK_PREVISPOINTER
+RING_VM_STACK_ISSTRINGVALUE(x)
+RING_VM_STACK_ISNUMBERVALUE(x)
 RING_VM_STACK_ISPOINTERVALUE(x)
 RING_VM_STACK_READC
 RING_VM_STACK_GETSTRINGRAW
@@ -289,6 +323,11 @@ RING_VM_STACK_READN
 RING_VM_STACK_READP
 RING_VM_STACK_OBJTYPE
 RING_VM_STACK_PREVOBJTYPE
+RING_VM_STACK_READCVALUE(x)
+RING_VM_STACK_STRINGSIZEVALUE(x)
+RING_VM_STACK_READNVALUE(x)
+RING_VM_STACK_READPVALUE(x)
+RING_VM_STACK_OBJTYPEVALUE(x)
 RING_VM_STACK_POP
 RING_OBJTYPE_VARIABLE
 RING_OBJTYPE_LISTITEM
@@ -311,6 +350,7 @@ RING_VM_DELETELASTINSTRUCTION
 RING_VM_JUMP
 RING_VM_IR_READC
 RING_VM_IR_READCVALUE(x)
+RING_VM_IR_READCVALUESIZE(x)
 RING_VM_IR_READP
 RING_VM_IR_READPVALUE(x)
 RING_VM_IR_READI
@@ -334,26 +374,28 @@ RING_VM_IR_READPVALUEATINS(x,y)
 RING_VM_PC_CURRENTINS
 RING_VM_PC_PREVINS
 RING_VM_IR_CLEARREG1STRING
-RING_VM_IR_SETREG1TYPE(x)
-RING_VM_IR_SETREG1TOPOINTERFROMSTACK
 RING_VM_PUSHNULLTHENJUMP
+RING_VM_IR_SETINTREG(x)
+RING_VM_IR_GETINTREG
+RING_VM_IR_SETFLAGREG(x)
+RING_VM_IR_GETFLAGREG
+RING_VM_IR_SETREG1TOPOINTERFROMSTACK
+RING_VM_IR_SETREG1TYPE(x)
+RING_VM_IR_SETREG2TYPE(x)
+RING_VM_IR_SETREG3TYPE(x)
+RING_VM_IR_SETREG4TYPE(x)
+RING_VM_IR_READLOWIVALUE(x)
+RING_VM_IR_READHIGHIVALUE(x)
+RING_VM_IR_ITEMSETLOWINT(x,y)
+RING_VM_IR_ITEMSETHIGHINT(x,y)
 RING_FUNCTYPE_SCRIPT
 RING_FUNCTYPE_C
-RING_FUNCCL_TYPE
-RING_FUNCCL_NAME
-RING_FUNCCL_PC
-RING_FUNCCL_SP
-RING_FUNCCL_TEMPMEM
-RING_FUNCCL_FILENAME
-RING_FUNCCL_NEWFILENAME
-RING_FUNCCL_METHODORFUNC
-RING_FUNCCL_LINENUMBER
-RING_FUNCCL_LISTSTART
-RING_FUNCCL_NESTEDLISTS
-RING_FUNCCL_CALLERPC
-RING_FUNCCL_FUNCEXE
-RING_FUNCCL_STATE
-RING_FUNCCL_TEMPMEMSIZEATSTART
+RING_FUNCSTATUS_LOAD
+RING_FUNCSTATUS_CALL
+RING_FUNCSTATUS_STARTED
+RING_VM_LASTFUNCCALL
+RING_VM_LASTOBJSTATE
+RING_FUNCPARA_EXPECTEDSIZE
 RING_FUNCMAP_NAME
 RING_FUNCMAP_PC
 RING_FUNCMAP_FILENAME
@@ -410,7 +452,8 @@ RING_CPOINTER_LISTSIZE
 RING_CPOINTERSTATUS_NOTCOPIED
 RING_CPOINTERSTATUS_COPIED
 RING_CPOINTERSTATUS_NOTASSIGNED
-RING_TEMP_VARIABLE
+RING_TEMP_VAR
+RING_TEMP_REF
 RING_VM_TRACEEVENT_NEWLINE
 RING_VM_TRACEEVENT_NEWFUNC
 RING_VM_TRACEEVENT_RETURN
@@ -425,6 +468,7 @@ RING_EVALOUTPUT_NULL
 RING_EVALOUTPUT_NUMBER
 RING_EVALOUTPUT_STRING
 RING_EVALOUTPUT_POINTER
+RING_VM_TEMPLISTSCOUNTERMAX
 RING_VM_ERROR_DIVIDEBYZERO
 RING_VM_ERROR_INDEXOUTOFRANGE
 RING_VM_ERROR_FUNCNOTFOUND
@@ -550,15 +594,17 @@ x,lFunctionCall,nRecursion,nPos
 Type: char *
 cStr2, *cStr3
 Type: List *
-pList, *pList2
+pList2
 Type: const char *
 cFile, *cFile2
 Type: const char *
 cOldFile
+Type: FuncCall *
+pFuncCall, *pFuncCall2
 ring_vm_setfilename
 ring_vm_traceevent
-Type: List *
-pList
+Type: FuncCall *
+pFuncCall
 ring_vm_eval
 Type: int
 nPC,nCont,nLastPC,nRunVM,x,nSize,nMark,lUpdate
@@ -600,7 +646,7 @@ ring_vm_runcodefromthread
 Type: RingState *
 pState
 Type: List *
-pList,*pList2,*pList3,*pList4,*pList5
+pList,*pList2,*pList3,*pList4,*pList5,*pGlobal, *pVarList
 Type: Item *
 pItem
 Type: unsigned int

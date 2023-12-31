@@ -1,23 +1,12 @@
 ring_vmgcdata
-Parent: ItemGCData
-Type: unsigned int
-nReferenceCount
-END:
-Type: ItemGCData
-struct ItemGCData
-Type: ItemGCData
-Mark: ->
-struct ItemGCData *
-Type: ItemGCData
-Mark: ->
-ItemGCData *
+RING_VM_BITSFORREFCOUNT
 Parent: ListGCData
 Type: void *
 pContainer
 Type: int
-nReferenceCount
+nReferenceCount: RING_VM_BITSFORREFCOUNT
 Type: int
-nTempRC
+nTempRC: RING_VM_BITSFORREFCOUNT
 Type: unsigned int
 lCopyByRef: 1
 Type: unsigned int
@@ -30,6 +19,8 @@ Type: unsigned int
 lDontRef: 1
 Type: unsigned int
 lErrorOnAssignment: 1
+Type: unsigned int
+lErrorOnAssignment2: 1
 Type: unsigned int
 lDeletedByParent: 1
 Type: unsigned int
@@ -47,8 +38,16 @@ ring_pooldata
 RING_USEPOOLMANAGER
 RING_USEPOOLMANAGER
 RING_TRACKALLOCATIONS
-RING_POOLMANAGER_ITEMSINBLOCK
 RING_POOLMANAGER_ITEMSTRINGSIZE
+RING_POOLMANAGER_ITEMSINBLOCK
+RING_POOLMANAGER_ITEMSTRINGSIZEL2
+RING_POOLMANAGER_ITEMSINBLOCKL2
+RING_POOLMANAGER_ITEMSTRINGSIZEL3
+RING_POOLMANAGER_ITEMSINBLOCKL3
+RING_POOLMANAGER_ITEMSTRINGSIZEStateLevel
+RING_POOLMANAGER_ITEMSINBLOCKStateLevel
+RING_VM_STATE_NUMBERS_COUNT
+RING_VM_STATE_POINTERS_COUNT
 Parent: PoolData
 Parent: PoolDataTypes
 Type: String
@@ -77,6 +76,66 @@ struct PoolData *
 Type: PoolData
 Mark: ->
 PoolData *
+Parent: PoolDataL2
+Type: char
+cChar[RING_POOLMANAGER_ITEMSTRINGSIZEL2]
+Type: struct PoolDataL2 *
+pNext
+END:
+Type: PoolDataL2
+struct PoolDataL2
+Type: PoolDataL2
+Mark: ->
+struct PoolDataL2 *
+Type: PoolDataL2
+Mark: ->
+PoolDataL2 *
+Parent: PoolDataL3
+Type: char
+cChar[RING_POOLMANAGER_ITEMSTRINGSIZEL3]
+Type: struct PoolDataL3 *
+pNext
+END:
+Type: PoolDataL3
+struct PoolDataL3
+Type: PoolDataL3
+Mark: ->
+struct PoolDataL3 *
+Type: PoolDataL3
+Mark: ->
+PoolDataL3 *
+Parent: VMState
+Type: int
+aNumbers[RING_VM_STATE_NUMBERS_COUNT]
+Type: void *
+aPointers[RING_VM_STATE_POINTERS_COUNT]
+END:
+Type: VMState
+struct VMState
+Type: VMState
+Mark: ->
+struct VMState *
+Type: VMState
+Mark: ->
+VMState *
+Parent: PoolDataStateLevel
+Parent: PoolDataStateLevelTypes
+Type: VMState
+vVMState
+Type: char
+cChar[RING_POOLMANAGER_ITEMSTRINGSIZEStateLevel]
+END:
+Type: struct PoolDataStateLevel *
+pNext
+END:
+Type: PoolDataStateLevel
+struct PoolDataStateLevel
+Type: PoolDataStateLevel
+Mark: ->
+struct PoolDataStateLevel *
+Type: PoolDataStateLevel
+Mark: ->
+PoolDataStateLevel *
 Parent: PoolManager
 Type: PoolData *
 pCurrentItem
@@ -84,6 +143,26 @@ Type: void *
 pBlockStart
 Type: void *
 pBlockEnd
+Type: PoolDataL2 *
+pCurrentItemL2
+Type: void *
+pBlockStartL2
+Type: void *
+pBlockEndL2
+Type: PoolDataL3 *
+pCurrentItemL3
+Type: void *
+pBlockStartL3
+Type: void *
+pBlockEndL3
+Type: PoolDataStateLevel *
+pCurrentItemStateLevel
+Type: void *
+pBlockStartStateLevel
+Type: void *
+pBlockEndStateLevel
+Type: List *
+aBlocks
 Type: unsigned int
 nAllocCount
 Type: unsigned int
@@ -94,8 +173,12 @@ Type: unsigned int
 nSmallFreeCount
 Type: unsigned int
 nItemsInBlock
-Type: List *
-aBlocks
+Type: unsigned int
+nItemsInBlockL2
+Type: unsigned int
+nItemsInBlockL3
+Type: unsigned int
+nItemsInBlockStateLevel
 Type: unsigned int
 lDeleteMemory
 END:
@@ -108,15 +191,9 @@ Type: PoolManager
 Mark: ->
 PoolManager *
 ring_gc_h
+ring_vm_gc_cleardata(pItem)
+ring_vm_gc_newitemreference(pItem)
 GCLog
-ring_vm_gc_cleardata
-ring_vm_gc_checkreferences
-Type: int
-x
-Type: List *
-pList, *pList2
-Type: Item *
-pItem
 ring_vm_gc_checknewreference
 Type: Item *
 pItem
@@ -134,7 +211,6 @@ newstr
 Type: char
 cStr[2]
 ring_vm_gc_deletetemplists
-ring_vm_gc_newitemreference
 ring_vm_gc_freefunc
 ring_vm_gc_setfreefunc
 ring_vm_gc_deletelistinitem
@@ -200,6 +276,9 @@ ring_list_isnewref
 ring_list_isdontrefagain
 ring_list_enabledontrefagain
 ring_list_disabledontrefagain
+ring_list_enableerroronassignment
+ring_list_disableerroronassignment
+ring_list_iserroronassignment
 ring_vm_checkvarerroronassignment
 Type: List *
 pList
@@ -215,6 +294,9 @@ pList
 ring_vm_removelistprotectionat
 Type: List *
 pList
+ring_list_iserroronassignment2
+ring_list_enableerroronassignment2
+ring_list_disableerroronassignment2
 ring_malloc
 Type: void *
 pMemory
@@ -238,13 +320,21 @@ x
 Type: RingState *
 pRingState
 ring_state_calloc
+Type: void *
+pMem
+Type: size_t
+nTotal
 ring_state_realloc
 Type: void *
 pMemory
 Type: PoolData *
 pPoolData
+Type: PoolDataL2 *
+pPoolDataL2
+Type: PoolDataL3 *
+pPoolDataL3
 Type: int
-x
+x, nLevel, nUseMalloc
 ring_state_registerblock
 Type: List *
 pList
@@ -262,6 +352,12 @@ ring_poolmanager_new
 ring_poolmanager_newblock
 Type: PoolData *
 pMemory
+Type: PoolDataL2 *
+pMemoryL2
+Type: PoolDataL3 *
+pMemoryL3
+Type: PoolDataStateLevel *
+pMemoryStateLevel
 Type: int
 x
 ring_poolmanager_allocate
@@ -271,6 +367,12 @@ ring_poolmanager_find
 ring_poolmanager_free
 Type: PoolData *
 pPoolData
+Type: PoolDataL2 *
+pPoolDataL2
+Type: PoolDataL3 *
+pPoolDataL3
+Type: int
+nLevel, lRet
 ring_poolmanager_delete
 ring_poolmanager_newblockfromsubthread
 Type: int
@@ -280,3 +382,11 @@ pMemory
 ring_poolmanager_deleteblockfromsubthread
 Type: PoolData *
 pMemory
+ring_vmstate_new
+Type: VMState *
+pVMState
+ring_vmstate_delete
+Type: RingState *
+pRingState
+Type: PoolDataStateLevel *
+pPoolDataStateLevel

@@ -39,8 +39,8 @@ tm_info
 ring_vm_generallib_filename
 Type: VM *
 pVM
-Type: List *
-pList
+Type: FuncCall *
+pFuncCall
 Type: int
 lFunctionCall,x
 Type: const char *
@@ -91,6 +91,14 @@ ring_vm_generallib_adddays_isleapyear
 ring_vm_generallib_srandom
 Type: int
 nNum1
+ring_vm_generallib_nothing
+ring_vm_generallib_optionalfunc
+Type: RingState *
+pRingState
+Type: VM *
+pVM
+Type: const char *
+cFunc
 ring_vm_generallib_isstring
 ring_vm_generallib_isnumber
 ring_vm_generallib_islist

@@ -30,6 +30,9 @@ ICO_LESSEQUAL
 ICO_GREATEREQUAL
 ICO_PUSHC
 ICO_PUSHN
+ICO_PUSH2N
+ICO_PUSH3N
+ICO_PUSH4N
 ICO_PUSHV
 ICO_PUSHP
 ICO_PUSHPV
@@ -65,8 +68,6 @@ ICO_POPEXITMARK
 ICO_EXIT
 ICO_INCJUMP
 ICO_INCPJUMP
-ICO_JUMPVARLENUM
-ICO_JUMPVARPLENUM
 ICO_TRY
 ICO_DONE
 ICO_RANGE
@@ -79,7 +80,6 @@ ICO_LOADFUNCP
 ICO_FREELOADASCOPE
 ICO_LOOP
 ICO_INCLPJUMP
-ICO_JUMPVARLPLENUM
 ICO_PACKAGE
 ICO_IMPORT
 ICO_SETPROPERTY
@@ -101,15 +101,15 @@ ICO_STEPNUMBER
 ICO_POPSTEP
 ICO_LOADAFIRST
 ICO_INCPJUMPSTEP1
-ICO_JUMPVARPLENUMSTEP1
+ICO_INCLPJUMPSTEP1
 ICO_ANONYMOUS
 ICO_CALLCLASSINIT
 ICO_NEWGLOBALSCOPE
 ICO_ENDGLOBALSCOPE
 ICO_SETGLOBALSCOPE
 ICO_FREETEMPLISTS
-ICO_EXTRAPARA
 ICO_LEN
+ICO_SETOPCODE
 END:
 Type: IC_OPERATIONS
 IC_OPERATIONS
@@ -127,6 +127,7 @@ ring_parser_icg_getoperandint(pParser,x)
 ring_parser_icg_getoperanddouble(pParser,x)
 RING_PARSER_ICG_PARENTCLASSPOS
 RING_PARSER_ICG_INSTRUCTIONSLISTTYPE
+ring_parser_icg_setoperationatpos(pParser,x,y)
 ring_parser_icg_newoperation
 ring_parser_icg_insertoperation
 ring_parser_icg_newoperand
@@ -153,12 +154,14 @@ ring_parser_icg_loadfunction
 ring_parser_icg_loadaddress
 ring_parser_icg_loadaddressassignmentpos
 ring_parser_icg_loadaddresstoloadfunction
-Type: RING_PARSER_ICG_INSTRUCTIONSLISTTYPE *
-pList
 ring_parser_icg_freestack
 ring_parser_icg_newline
 ring_parser_icg_parentclassname
 ring_parser_icg_newpackagename
+ring_parser_icg_pushn
+Type: int
+nLastOperation, lChange
+ring_parser_icg_beforeequal
 ring_parser_icg_showoutput
 Type: int
 x,y,nCount,nCount2

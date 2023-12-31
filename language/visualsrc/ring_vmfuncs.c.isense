@@ -1,9 +1,11 @@
 ring_vm_loadfunc
 ring_vm_loadfunc2
 Type: List *
-pList,*pList2,*pList3
+pList,*pList2
 Type: int
 y
+Type: FuncCall *
+pFuncCall
 ring_vm_call
 Type: List *
 pList
@@ -11,24 +13,30 @@ ring_vm_call2
 Type: List *
 pList, *pActiveMem
 Type: int
-x,nSP,nMax1,nFuncEx
+x,nSP,nMax1
+Type: FuncCall *
+pFuncCall
 ring_vm_return
 Type: List *
 pList
 Type: Item
 oTempItem
+Type: FuncCall *
+pFuncCall
 ring_vm_returnnull
 ring_vm_newfunc
 Type: int
-x,nSP,nMax
+x,nSP,nMax,lFreeParameter
 Type: List *
-pList, *aParameters,*aRefList,*pVar,*pRef
-Type: String *
+pList,*aRefList,*pVar,*pRef
+Type: char *
 pParameter
 Type: char *
 cParameters
 Type: char
-cStr[2]
+cPara[RING_FUNCPARA_EXPECTEDSIZE]
+Type: FuncCall *
+pFuncCall
 ring_vm_blockflag
 ring_vm_blockflag2
 Type: List *
@@ -46,23 +54,36 @@ Type: List *
 pList, *pList2
 Type: int
 x,lFound
-ring_vm_saveloadaddressscope
-ring_vm_restoreloadaddressscope
 ring_vm_anonymous
 Type: char *
 cStr
 ring_vm_isstackpointertoobjstate
 ring_vm_prevtempmem
 Type: List *
-pList
+pList, *pTemp
+Type: FuncCall *
+pFuncCall
 Type: int
 x
+ring_vm_freetemplistsins
 ring_vm_freetemplists
 Type: List *
 pTempMem, *pList, *pList2
 Type: int
 x,x2,lFound,nStart,lMutex
+Type: FuncCall *
+pFuncCall
 ring_vm_endfuncexec
 ring_vm_retitemref
 Type: List *
 pList
+Type: FuncCall *
+pFuncCall
+ring_vm_timetofreetemplists
+ring_vmfunccall_new
+Type: FuncCall *
+pFuncCall
+ring_vmfunccall_delete
+Type: FuncCall *
+pFuncCall
+ring_vmfunccall_useloadfuncp

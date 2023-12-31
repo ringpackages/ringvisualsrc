@@ -7,11 +7,11 @@ Type: String *
 pString
 ring_parser_stmt
 Type: int
-x,nMark1,nMark2,nMark3,nStart,nEnd,nFlag,nLoadPackage,nLoopOrExitCommand,nLoadAgain,nForInVarsCount,nVar,nLine
+x,nMark1,nMark2,nMark3,nStart,nEnd,nDiff,lFastLen,nFlag,nLoadPackage,nLoopOrExitCommand,nLoadAgain,nForInVarsCount,nVar,nLine,nLine2
 Type: String *
 pString
 Type: List *
-pMark,*pMark2,*pMark3,*pList2
+pMark,*pMark2,*pMark3,*pMark4,*pList2
 Type: double
 nNum1
 cStr
@@ -21,7 +21,7 @@ Type: char
 cCurrentDir[RING_PATHSIZE]
 ring_parser_paralist
 Type: int
-nStart
+nStart, nParaCount
 Type: const char *
 cToken
 ring_parser_list

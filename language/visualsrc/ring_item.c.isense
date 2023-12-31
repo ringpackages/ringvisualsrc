@@ -1,11 +1,5 @@
 ring_item_h
 Parent: Item
-Type: unsigned int
-nType:3
-Type: unsigned int
-NumberFlag:2
-Type: unsigned int
-nObjectType:2
 Parent: data
 Type: struct String *
 pString
@@ -20,8 +14,14 @@ pList
 Type: float
 fNumber
 END:
-Type: ItemGCData
-gc
+Type: unsigned int
+nType:3
+Type: unsigned int
+NumberFlag:2
+Type: unsigned int
+nObjectType:2
+Type: unsigned int
+gcnReferenceCount: 24
 END:
 Type: Item
 struct Item
@@ -42,7 +42,6 @@ ITEM_NUMBERFLAG_INT
 ITEM_NUMBERFLAG_DOUBLE
 ITEM_OBJTYPE_NOTHING
 ring_item_getstring(x)
-ring_item_getnumber(x)
 ring_item_getdouble(x)
 ring_item_getint(x)
 ring_item_getlist(x)
@@ -60,6 +59,7 @@ ring_itemarray_ispointer(pList,index)
 ring_item_isstring(x)
 ring_item_islist(x)
 ring_item_isdouble(x)
+ring_item_incdouble(x)
 ring_item_new_gc
 Type: Item *
 pItem
@@ -67,6 +67,7 @@ ring_item_delete_gc
 ring_item_print
 Type: unsigned int
 ItemType
+ring_item_init
 ring_item_deletecontent_gc
 Type: int
 nType
