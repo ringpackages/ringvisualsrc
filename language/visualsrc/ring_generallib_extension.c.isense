@@ -8,6 +8,8 @@ ring_vm_generallib_clock
 Type: clock_t
 nNum1
 ring_vm_generallib_input
+Type: char
+cInput[RING_LARGEBUF]
 Type: char *
 cLine
 Type: int
@@ -21,21 +23,21 @@ ring_vm_generallib_char
 Type: int
 x
 Type: char
-cStr[2]
+cStr[RING_CHARBUF]
 ring_vm_generallib_date
 Type: time_t
-timer
+vTimer
 Type: char
-buffer[25]
+cBuffer[RING_SMALLBUF]
 Type: struct tm*
-tm_info
+vTimeInfo
 ring_vm_generallib_time
 Type: time_t
-timer
+vTimer
 Type: char
-buffer[25]
+cBuffer[RING_SMALLBUF]
 Type: struct tm*
-tm_info
+vTimeInfo
 ring_vm_generallib_filename
 Type: VM *
 pVM
@@ -49,7 +51,7 @@ Type: const char *
 cFile
 ring_vm_generallib_getchar
 Type: char
-cStr[2]
+cStr[RING_CHARBUF]
 Type: int
 nOutput
 ring_vm_generallib_random
@@ -57,18 +59,18 @@ Type: int
 nNum1,nNum2
 ring_vm_generallib_timelist
 Type: time_t
-timer
+vTimer
 Type: char
-buffer[25]
+cBuffer[RING_SMALLBUF]
 Type: struct tm*
-tm_info
+vTimeInfo
 Type: List *
 pList
 ring_vm_generallib_adddays
 Type: const unsigned char *
 cStr
 Type: char
-buffer[25]
+cBuffer[RING_SMALLBUF]
 Type: int
 x,nDay,nMonth,nYear,nDaysInMonth
 Type: int
@@ -77,11 +79,11 @@ ring_vm_generallib_diffdays
 Type: const unsigned char *
 cStr, *cStr2
 Type: struct tm
-tm_info,tm_info2
+vTimeInfo,vTimeInfo2
 Type: time_t
-timer,timer2
+vTimer,vTimer2
 Type: char
-buffer[5]
+cBuffer[RING_SMALLBUF]
 Type: double
 nResult
 ring_vm_generallib_version
@@ -118,13 +120,19 @@ x
 Type: int
 nOutput
 ring_vm_generallib_number
+Type: VM *
+pVM
 Type: double
 x
+Type: int
+y, nSize, lHex, lSign, lDot
+Type: const char *
+cStr
 ring_vm_generallib_string
 Type: double
 nNum1
 Type: char
-cStr[100]
+cStr[RING_MEDIUMBUF]
 ring_vm_generallib_str2hex
 Type: unsigned char *
 cString
@@ -140,7 +148,6 @@ ring_vm_generallib_hex2str_hex2nibble
 Type: unsigned char
 bVal
 ring_vm_generallib_hex2str
-cStr
 Type: const char *
 cString
 Type: char *
@@ -162,7 +169,7 @@ pList
 Type: String *
 pString
 Type: int
-x
+x,nStart,nMax
 cStr
 ring_vm_generallib_str2hexcstyle
 cStr
@@ -180,7 +187,7 @@ cStr
 Type: int
 x,nNewSize
 Type: char *
-pString
+cString
 ring_vm_generallib_right
 Type: double
 nNum1
@@ -189,7 +196,7 @@ cStr
 Type: int
 x,nSize,nNewSize
 Type: char *
-pString
+cString
 ring_vm_generallib_trim
 Type: const char *
 cStr
@@ -260,7 +267,7 @@ pList
 ring_vm_generallib_nullpointer
 ring_vm_generallib_space
 Type: char *
-pString
+cString
 Type: unsigned int
 nStrSize
 ring_vm_generallib_ptrcmp
@@ -279,23 +286,29 @@ Type: RING_UNSIGNEDINTEGERPOINTER
 nNum
 ring_vm_generallib_memcpy
 Type: void *
-dest
+pDest
 Type: const void *
-src
+pSrc
 Type: size_t
-num
+nNum
 Type: List *
 pList
 ring_vm_generallib_state_init
 Type: RingState *
 pState
 ring_vm_generallib_state_runcode
+Type: RingState *
+pRingState
 ring_vm_generallib_state_delete
 ring_vm_generallib_state_runfile
 ring_vm_generallib_state_findvar
+Type: RingState *
+pRingState
 Type: List *
 pList
 ring_vm_generallib_state_newvar
+Type: RingState *
+pRingState
 Type: List *
 pList
 ring_vm_generallib_state_runobjectfile
@@ -303,9 +316,9 @@ ring_vm_generallib_state_main
 Type: char *
 cStr
 Type: int
-argc
+nArgc
 Type: char *
-argv[2]
+pArgv[2]
 ring_vm_generallib_state_setvar
 Type: List *
 pList, *pList2, *pList3
@@ -322,9 +335,9 @@ pRingState
 Type: char *
 cStr
 Type: int
-argc
+nArgc, lOutput
 Type: char *
-argv[2]
+pArgv[2]
 ring_vm_generallib_state_filetokens
 Type: RingState *
 pState
@@ -346,6 +359,16 @@ lCase,lComments
 ring_vm_generallib_state_scannererror
 Type: RingState *
 pState
+ring_vm_generallib_state_runcodeatins
+Type: RingState *
+pRingState
+Type: int
+nPC
+ring_vm_generallib_state_resume
+Type: RingState *
+pRingState
+Type: int
+nPC
 ring_vm_generallib_see
 Type: char *
 cString
@@ -364,7 +387,7 @@ ring_vm_generallib_print
 Type: List *
 pList
 Type: char
-cStr[100]
+cStr[RING_MEDIUMBUF]
 Type: VM *
 pVM
 ring_vm_generallib_print2str
@@ -372,7 +395,7 @@ ring_vm_generallib_puts
 Type: List *
 pList
 Type: char
-cStr[100]
+cStr[RING_MEDIUMBUF]
 Type: VM *
 pVM
 ring_vm_generallib_getnumber
@@ -393,5 +416,3 @@ pRingCode
 Type: VM *
 pVM
 ring_vm_generallib_checkoverflow
-ring_vm_generallib_bymoveaddsublists
-ring_vm_generallib_byfastcopyaddsublists

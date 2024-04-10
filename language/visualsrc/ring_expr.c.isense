@@ -32,27 +32,19 @@ Type: int
 x,nFlag
 ring_parser_factor
 Type: int
-x,x2,x3,nLastOperation,nCount,nNOOP,nToken,nMark,nFlag2,nThisOrSelfLoadA,nThisLoadA,lNewFrom,lAfterListEnd
+x,x2,x3,nLastOperation,nCount,nNOOP,nToken,nMark,nFlag2,lThisOrSelfLoadA,lThisLoadA,lNewFrom,lAfterListEnd
 Type: List *
 pLoadAPos, *pLoadAMark,*pList, *pMark,*pAssignmentPointerPos
 Type: char
 lSetProperty,lequal,nBeforeEqual,lNewAfterEqual
 Type: char
-cFuncName[100]
+cFuncName[RING_MEDIUMBUF]
 Type: char
-cKeyword[100]
+cKeyword[RING_MEDIUMBUF]
 ring_parser_mixer
 Type: int
 x,nCallMethod,nStatus,nFlag,nNew
-ring_parser_gencall
 ring_parser_ppmm
 Type: int
 nLastOperation,nMark,nMode,nValue
-Type: List *
-pMark
-ring_parser_gencallbracemethod
-Type: int
-nMark1
-Type: List *
-pMark
 ring_parser_objattributes

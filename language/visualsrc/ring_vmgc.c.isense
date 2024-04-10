@@ -38,16 +38,22 @@ ring_pooldata
 RING_USEPOOLMANAGER
 RING_USEPOOLMANAGER
 RING_TRACKALLOCATIONS
+RING_POOLMANAGER_NOTFOUND
 RING_POOLMANAGER_ITEMSTRINGSIZE
 RING_POOLMANAGER_ITEMSINBLOCK
+RING_POOLMANAGER_LEVEL1
 RING_POOLMANAGER_ITEMSTRINGSIZEL2
 RING_POOLMANAGER_ITEMSINBLOCKL2
+RING_POOLMANAGER_LEVEL2
 RING_POOLMANAGER_ITEMSTRINGSIZEL3
 RING_POOLMANAGER_ITEMSINBLOCKL3
+RING_POOLMANAGER_LEVEL3
 RING_POOLMANAGER_ITEMSTRINGSIZEStateLevel
 RING_POOLMANAGER_ITEMSINBLOCKStateLevel
 RING_VM_STATE_NUMBERS_COUNT
 RING_VM_STATE_POINTERS_COUNT
+RING_VM_BLOCKSTART
+RING_VM_BLOCKEND
 Parent: PoolData
 Parent: PoolDataTypes
 Type: String
@@ -162,7 +168,9 @@ pBlockStartStateLevel
 Type: void *
 pBlockEndStateLevel
 Type: List *
-aBlocks
+pBlocks
+Type: void *
+pMutex
 Type: unsigned int
 nAllocCount
 Type: unsigned int
@@ -209,7 +217,7 @@ pItem
 Type: char *
 newstr
 Type: char
-cStr[2]
+cStr[RING_CHARBUF]
 ring_vm_gc_deletetemplists
 ring_vm_gc_freefunc
 ring_vm_gc_setfreefunc
@@ -316,7 +324,7 @@ pBlockEnd
 Type: List *
 pBlocks, *pBlock
 Type: int
-x
+x, lFound
 Type: RingState *
 pRingState
 ring_state_calloc

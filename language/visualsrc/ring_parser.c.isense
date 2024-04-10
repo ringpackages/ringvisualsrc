@@ -1,15 +1,31 @@
 ring_parser_h
 Parent: Parser
+Type: RingState *
+pRingState
 Type: List *
-Tokens
-Type: unsigned int
-ActiveToken
-Type: unsigned int
-TokensCount
-Type: unsigned char
-TokenType
+pTokens
+Type: List *
+pGenCode
+Type: List *
+pActiveGenCodeList
+Type: List *
+pFunctionsMap
+Type: List *
+pClassesMap
+Type: List *
+pPackagesMap
+Type: List *
+pForInVars
 Type: const char *
-TokenText
+cTokenText
+Type: unsigned int
+nClassMark
+Type: unsigned int
+nBracesCounter
+Type: unsigned int
+nActiveToken
+Type: unsigned int
+nTokensCount
 Type: unsigned int
 nTokenIndex
 Type: unsigned int
@@ -18,52 +34,36 @@ Type: unsigned int
 nErrorLine
 Type: unsigned int
 nErrorsCount
-Type: List *
-GenCode
-Type: List *
-ActiveGenCodeList
-Type: unsigned char
-nAssignmentFlag
-Type: unsigned char
-nClassStart
-Type: List *
-FunctionsMap
-Type: List *
-ClassesMap
-Type: List *
-PackagesMap
-Type: int
-nClassMark
-Type: unsigned char
-nPrivateFlag
-Type: unsigned int
-nBraceFlag
-Type: unsigned char
-nInsertFlag
-Type: unsigned int
-nInsertCounter
-Type: unsigned char
-nNewObject
-Type: unsigned char
-nFuncCallOnly
-Type: unsigned int
-nControlStructureExpr
 Type: unsigned int
 nControlStructureBrace
-Type: unsigned char
-nThisOrSelfLoadA
-Type: unsigned char
-nThisLoadA
-Type: unsigned char
-nLoopOrExitCommand
-Type: unsigned char
-nCheckLoopAndExit
 Type: unsigned int
-nLoopFlag
-Type: List *
-pForInVars
-Type: RingState *
-pRingState
+nInsertCounter
+Type: unsigned int
+nLoopCounter
+Type: unsigned int
+lLoopOrExitCommand: 1
+Type: unsigned int
+lCheckLoopAndExit: 1
+Type: unsigned int
+lControlStructureExpr: 1
+Type: unsigned int
+lAssignmentFlag: 1
+Type: unsigned int
+lClassStart: 1
+Type: unsigned int
+lPrivateFlag: 1
+Type: unsigned int
+lNewObject: 1
+Type: unsigned int
+lFuncCallOnly: 1
+Type: unsigned int
+lThisOrSelfLoadA: 1
+Type: unsigned int
+lThisLoadA: 1
+Type: unsigned int
+lInsertFlag: 1
+Type: unsigned int
+nTokenType: 3
 END:
 Type: Parser
 struct Parser
@@ -102,9 +102,99 @@ RING_PARSER_ERROR_CLASSREDEFINE
 RING_PARSER_ERROR_SYNTAXERROR
 RING_PARSER_ERROR_EXPRESSIONISEXPECTED
 RING_PARSER_ERROR_BRACEISMISSINGTOSTARTANONFUNC
-RING_PARSER_WARNING_EXITOUTSIDELOOP
-RING_PARSER_WARNING_LOOPOUTSIDELOOP
 RING_PARSER_NUMBERLENGTH
+RING_PACKAGES_PACKAGENAME
+RING_PACKAGES_CLASSESLIST
+RING_CLASSES_CLASSNAME
+RING_FUNCTIONS_FUNCNAME
+RING_PARSER_OK
+RING_PARSER_FAIL
+RING_RULE_LOAD
+RING_RULE_IMPORT
+RING_RULE_PACKAGE
+RING_RULE_CLASS
+RING_RULE_CLASSFROM
+RING_RULE_PRIVATE
+RING_RULE_FUNCANDPARA
+RING_RULE_RETURN
+RING_RULE_SEEEXPR
+RING_RULE_QEXPR
+RING_RULE_GIVE
+RING_RULE_FORLOOP
+RING_RULE_NEXT
+RING_RULE_FORINLOOP
+RING_RULE_IFSTATEMENT
+RING_RULE_BUT
+RING_RULE_ELSE
+RING_RULE_OK
+RING_RULE_WHILELOOP
+RING_RULE_END
+RING_RULE_DOAGAINLOOP
+RING_RULE_AGAINEXPR
+RING_RULE_TRYCATCHDONE
+RING_RULE_CATCH
+RING_RULE_DONE
+RING_RULE_BYE
+RING_RULE_EXIT
+RING_RULE_LOOP
+RING_RULE_SWITCH
+RING_RULE_ONEXPR
+RING_RULE_OTHER
+RING_RULE_OFF
+RING_RULE_EXPR
+RING_RULE_PARALISTEPSILON
+RING_RULE_PARALISTIDENTIFIER
+RING_RULE_LIST
+RING_RULE_EXPRISLOGICNOT
+RING_RULE_EXPRANDEXPR
+RING_RULE_EXPROREXPR
+RING_RULE_LOGICNOTISNOT
+RING_RULE_LOGICNOTISEQUALORNOT
+RING_RULE_EQUALORNOTISCOMPARE
+RING_RULE_NOTEQUAL
+RING_RULE_ISEQUAL
+RING_RULE_COMPAREISBITORXOR
+RING_RULE_LESSTHAN
+RING_RULE_LESSTHANOREQUAL
+RING_RULE_GREATERTHAN
+RING_RULE_GREATERTHANOREQUAL
+RING_RULE_BITORXORISBITAND
+RING_RULE_BITOR
+RING_RULE_XOR
+RING_RULE_BITANDISBITSHIFT
+RING_RULE_BITAND
+RING_RULE_BITSHIFTISARITHMETIC
+RING_RULE_SHIFTLEFT
+RING_RULE_SHIFTRIGHT
+RING_RULE_ARITHMETICISTERM
+RING_RULE_PLUS
+RING_RULE_MINUS
+RING_RULE_TERMISRANGE
+RING_RULE_MUL
+RING_RULE_MOD
+RING_RULE_POW
+RING_RULE_DIV
+RING_RULE_RANGEISFACTOR
+RING_RULE_FACTORISIDENTIFIER
+RING_RULE_RANGE
+RING_RULE_ASSIGNMENT
+RING_RULE_FACTORISNUMBER
+RING_RULE_FACTORISLITERAL
+RING_RULE_HASHLIST
+RING_RULE_NEGATIVE
+RING_RULE_BITNOT
+RING_RULE_FACTORISEMPTYGROUP
+RING_RULE_FACTORISGROUP
+RING_RULE_FACTORISLIST
+RING_RULE_NEWOBJECT
+RING_RULE_ANONFUNC
+RING_RULE_MIXERISLIST
+RING_RULE_MIXERISGROUP
+RING_RULE_MIXERISBRACES
+RING_RULE_BRACEEND
+RING_RULE_PLUSPLUS
+RING_RULE_MINUSMINUS
+RING_RULE_MIXERISDOT
 RING_PARSER_IGNORENEWLINE
 RING_PARSER_PASSNEWLINE
 RING_PARSER_CURRENTTOKEN
@@ -114,7 +204,7 @@ ring_parser_start
 Type: Parser *
 pParser
 Type: int
-nResult,RingActiveFile
+nResult,nRingActiveFile
 ring_parser_new
 Type: Parser *
 pParser
@@ -134,4 +224,4 @@ ring_parser_isanykeyword
 ring_parser_isoperator2
 ring_parser_error
 Type: int
-RingActiveFile
+nRingActiveFile

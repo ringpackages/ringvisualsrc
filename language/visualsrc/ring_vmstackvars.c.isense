@@ -16,7 +16,7 @@ ring_vm_assignment
 Type: List *
 pVar,*pList, *pList2
 Type: String *
-cStr1, *pString
+pStr1, *pString
 Type: double
 nNum1
 Type: Item *
@@ -43,21 +43,18 @@ Type: List *
 pNewList2, *pSourceList
 Type: Item *
 pItem
-ring_vm_list_simpointercopy
-Type: int
-x
 ring_vm_beforeequallist
 Type: String *
 pString
 Type: char
-cStr[100]
+cStr[RING_MEDIUMBUF]
 Type: int
 nOutput
 ring_vm_beforeequalitem
 Type: String *
 pString
 Type: char
-cStr[100]
+cStr[RING_MEDIUMBUF]
 Type: int
 nOutput
 ring_vm_plusplus

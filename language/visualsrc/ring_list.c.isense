@@ -33,7 +33,7 @@ pHashTable
 Type: struct ListBlocks *
 pBlocks
 Type: ListGCData
-gc
+vGC
 END:
 Type: List
 struct List
@@ -50,22 +50,23 @@ RING_LISTREF_DEC
 RING_LISTBLOCKTYPE_ITEM
 RING_LISTBLOCKTYPE_ITEMS
 RING_LISTBLOCKTYPE_LIST
-ring_list_isdouble(pList,index)
-ring_list_isint(pList,index)
-ring_list_deletelastitem(x)
-ring_list_gethashtable(x)
-ring_list_getint(pList,index)
-ring_list_getpointer(pList,index)
-ring_list_getpointertype(pList,index)
-ring_list_getfuncpointer(pList,index)
-ring_list_callfuncpointer(pList,index,x)
-ring_list_getdouble(pList,index)
-ring_list_getstring(pList,index)
-ring_list_getstringobject(pList,index)
-ring_list_getstringsize(pList,index)
-ring_list_getsize(x)
-ring_list_deletelastitem_gc(s,x)
-ring_list_incdouble(pList,index)
+RING_LIST_KEYINDEX
+ring_list_isdouble(pList,nIndex)
+ring_list_isint(pList,nIndex)
+ring_list_deletelastitem(pList)
+ring_list_gethashtable(pList)
+ring_list_getint(pList,nIndex)
+ring_list_getpointer(pList,nIndex)
+ring_list_getpointertype(pList,nIndex)
+ring_list_getfuncpointer(pList,nIndex)
+ring_list_callfuncpointer(pList,nIndex,pPointer)
+ring_list_getdouble(pList,nIndex)
+ring_list_getstring(pList,nIndex)
+ring_list_getstringobject(pList,nIndex)
+ring_list_getstringsize(pList,nIndex)
+ring_list_getsize(pList)
+ring_list_deletelastitem_gc(pState,pList)
+ring_list_incdouble(pList,nIndex)
 ring_list_new_gc
 Type: List *
 pList
@@ -91,20 +92,21 @@ Type: unsigned int
 x
 Type: List *
 pNewList2
-ring_list_clear
 ring_list_addblock_gc
 Type: ListBlocks *
 pBlocks
+ring_list_clearcache
+ring_list_setcache
 ring_list_newitem_gc
 Type: Items *
 pItems
 ring_list_getitem
-Type: unsigned int
-x
 Type: Items *
 pItems
 Type: Item *
 pItem
+Type: unsigned int
+x
 ring_list_deleteitem_gc
 Type: unsigned int
 x
@@ -167,7 +169,7 @@ ring_list_addfuncpointer_gc
 ring_list_isfuncpointer
 ring_list_insertitem_gc
 Type: Items *
-pItems
+pItems, *pPos
 ring_list_insertint_gc
 ring_list_insertdouble_gc
 ring_list_insertpointer_gc
@@ -193,6 +195,11 @@ Type: Item *
 pItem2
 Type: List *
 pList2
+ring_list_getitemcontainer
+Type: Items *
+pItems
+Type: unsigned int
+x
 ring_list_findstring
 Type: unsigned int
 x,nCount
@@ -208,30 +215,32 @@ Type: unsigned int
 x
 ring_list_sortnum
 Type: unsigned int
-x,y,mid
+x,y,nMid
 Type: double
-midvalue
+nMidvalue
 ring_list_sortstr_gc
 Type: unsigned int
-x,y,mid
+x,y,nMid
 Type: String *
-midvalue
+pMidvalue
 ring_list_binarysearchnum
 Type: int
-nFirst,nMiddle,nLast
+nFirst,nMid,nLast
 ring_list_binarysearchstr
 Type: int
-nFirst,nMiddle,nLast,nRes
+nFirst,nMid,nLast,nRes
 ring_list_swap
 Type: Item *
 pItem
 Type: Items *
-pItems
+pItems, *pItems2
 ring_list_genarray_gc
 Type: unsigned int
 x
 Type: Item **
 pArray
+Type: Items *
+pItems
 ring_list_deletearray_gc
 ring_list_genhashtable_gc
 Type: unsigned int
@@ -276,7 +285,7 @@ ring_list_genhashtable
 ring_list_genhashtable2
 ring_list_swaptwolists
 Type: List
-TempList
+pTempList
 ring_list_print
 ring_list_print2
 Type: unsigned int
@@ -288,9 +297,9 @@ cStr
 Type: List *
 pList2
 Type: char
-cOptions[10]
+cOptions[RING_SMALLBUF]
 Type: char
-cString[100]
+cString[RING_MEDIUMBUF]
 ring_list_findinlistofobjs
 Type: unsigned int
 x,nCount,nPos
@@ -323,6 +332,6 @@ pList2,*pList3
 Type: unsigned int
 x
 Type: char
-cStr[100]
+cStr[RING_MEDIUMBUF]
 ring_list_iscpointerlist
 ring_list_cpointercmp

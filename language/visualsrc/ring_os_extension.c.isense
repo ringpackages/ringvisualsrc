@@ -69,3 +69,8 @@ Type: LARGE_INTEGER
 ElapsedMicroseconds
 Type: unsigned int
 nNum
+ring_vm_os_syssleep
+Type: int
+nTime
+Type: struct timespec
+sTimeSpec

@@ -1,27 +1,29 @@
 ring_scanner_h
 Parent: Scanner
-state
-Type: List *
-Keywords
-Type: List *
-Operators
-Type: List *
-Tokens
-Type: String *
-ActiveToken
-Type: unsigned int
-LinesCount
-FloatMark
-Type: char
-cLiteral
-Type: char
-cMLComment
 Type: RingState *
 pRingState
+Type: List *
+pKeywords
+Type: List *
+pOperators
+Type: List *
+pTokens
+Type: String *
+pActiveToken
 Type: unsigned int
 nTokenIndex
 Type: unsigned int
 nLiteralLine
+Type: unsigned int
+nLinesCount
+cState
+nFloatMark
+Type: char
+cLiteral
+Type: char
+cMLComment
+Type: char
+lHashComments
 END:
 Type: Scanner
 struct Scanner
@@ -90,6 +92,8 @@ K_CONTINUE
 K_CHANGERINGKEYWORD
 K_CHANGERINGIOPERATOR
 K_LOADSYNTAX
+K_ENABLEHASHCOMMENTS
+K_DISABLEHASHCOMMENTS
 END:
 Type: SCANNER_KEYWORD
 SCANNER_KEYWORD
@@ -98,7 +102,7 @@ OP_PLUS = 1
 OP_MINUS
 OP_MUL
 OP_DIV
-OP_REM
+OP_MOD
 OP_DOT
 OP_FOPEN
 OP_FCLOSE
@@ -116,11 +120,31 @@ OP_BITAND
 OP_BITOR
 OP_BITNOT
 OP_XOR
+OP_QUES
+OP_INC
+OP_DEC
+OP_LOGAND
+OP_LOGOR
+OP_POW
+OP_SHL
+OP_SHR
+OP_PLUSEQUAL
+OP_MINUSEQUAL
+OP_MULEQUAL
+OP_DIVEQUAL
+OP_MODEQUAL
+OP_BITANDEQUAL
+OP_BITOREQUAL
+OP_BITXOREQUAL
+OP_SHLEQUAL
+OP_SHREQUAL
+OP_POWEQUAL
 END:
 Type: SCANNER_OPERATOR
 SCANNER_OPERATOR
 RING_SCANNER_TOKENTYPE
 RING_SCANNER_TOKENVALUE
+RING_SCANNER_TOKENINDEX
 SCANNER_TOKEN_KEYWORD
 SCANNER_TOKEN_OPERATOR
 SCANNER_TOKEN_LITERAL
@@ -139,6 +163,11 @@ SCANNER_STATE_LOADSYNTAX
 RING_SCANNER_CHANGERINGKEYWORD
 RING_SCANNER_CHANGERINGOPERATOR
 RING_SCANNER_LOADSYNTAX
+RING_SCANNER_ENABLEHASHCOMMENTS
+RING_SCANNER_DISABLEHASHCOMMENTS
+SCANNER_FLOATMARK_START
+SCANNER_FLOATMARK_NUMBER
+SCANNER_FLOATMARK_NUMBERDOT
 RING_SCANNER_DELETELASTTOKEN
 ring_scanner_new
 Type: Scanner *
@@ -146,7 +175,7 @@ pScanner
 ring_scanner_delete
 ring_scanner_readchar
 Type: char
-cStr[2]
+cStr[RING_CHARBUF]
 Type: List *
 pList
 Type: String *
@@ -161,7 +190,7 @@ ring_scanner_checktoken
 Type: int
 nResult
 Type: char
-cStr[5]
+cStr[RING_SMALLBUF]
 Type: char *
 cActiveStr
 ring_scanner_isnumber
@@ -211,7 +240,7 @@ x,nResult
 Type: String *
 word1, *word2, *activeword
 Type: char
-cStr2[2]
+cStr2[RING_CHARBUF]
 ring_scanner_changeoperator
 Type: char *
 cStr
@@ -220,7 +249,7 @@ x,nResult
 Type: String *
 word1, *word2, *activeword
 Type: char
-cStr2[2]
+cStr2[RING_CHARBUF]
 ring_scanner_loadsyntax
 Type: char *
 cFileName

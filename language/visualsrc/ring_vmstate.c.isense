@@ -7,7 +7,7 @@ Type: Item *
 pItem
 ring_vm_restorestate
 Type: List *
-pThis,*pFuncList
+pThis
 Type: VMState *
 pVMState, *pVMStateForFunc, *pVMStateForObj
 Type: int
@@ -45,7 +45,7 @@ Type: VMState *
 pVMState
 ring_vm_savestateforbraces
 Type: List *
-pList, *pClass,*aSetProperty
+pList, *pClass,*pSetProperty
 ring_vm_restorestateforbraces
 Type: List *
 pObject

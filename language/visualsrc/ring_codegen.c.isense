@@ -110,24 +110,35 @@ ICO_SETGLOBALSCOPE
 ICO_FREETEMPLISTS
 ICO_LEN
 ICO_SETOPCODE
+ICO_CHECKBRACEMETHOD
+ICO_OPTIONALLOOP
 END:
 Type: IC_OPERATIONS
 IC_OPERATIONS
+RING_PARSER_ICG_INSTRUCTIONSLISTTYPE
+RING_PARSER_ICG_OPERATIONCODE
+RING_PARSER_ICG_PARA1
+RING_PARSER_ICG_PARA2
+RING_PARSER_ICG_PARENTCLASSPOS
+RING_PARSER_ICG_LOADAASSIGNPOS
+RING_PARSER_ICG_LOADASETTERPOS
+RING_PARSER_ICG_LOADAGETTERPOS
+RING_PARSER_ICG_USEASSIGNMENT
+RING_PARSER_ICG_USESETPROPERTY
+RING_PARSER_ICG_NORMALPP
+RING_PARSER_ICG_NORMALMM
 RING_PARSER_ICG_GOTOLASTOP
-ring_parser_icg_newlabel(x)
+ring_parser_icg_newlabel(pParser)
 ring_parser_icg_getlastoperation(pParser)
-ring_parser_icg_setlastoperation(pParser,x)
+ring_parser_icg_setlastoperation(pParser,nOPCode)
 ring_parser_icg_instructionscount(pParser)
 ring_parser_icg_instructionslistsize(pParser)
-ring_parser_icg_getoperationlist(pParser,x)
-RING_PARSER_ICG_OPERATIONCODE
+ring_parser_icg_getoperationlist(pParser,nIndex)
 ring_parser_icg_getoperationbeforelastoperation(pParser)
-ring_parser_icg_getoperationatpos(pParser,x)
-ring_parser_icg_getoperandint(pParser,x)
-ring_parser_icg_getoperanddouble(pParser,x)
-RING_PARSER_ICG_PARENTCLASSPOS
-RING_PARSER_ICG_INSTRUCTIONSLISTTYPE
-ring_parser_icg_setoperationatpos(pParser,x,y)
+ring_parser_icg_getoperationatpos(pParser,nIndex)
+ring_parser_icg_getoperandint(pParser,nPos)
+ring_parser_icg_getoperanddouble(pParser,nPos)
+ring_parser_icg_setoperationatpos(pParser,nIndex,nOPCode)
 ring_parser_icg_newoperation
 ring_parser_icg_insertoperation
 ring_parser_icg_newoperand
@@ -162,6 +173,18 @@ ring_parser_icg_pushn
 Type: int
 nLastOperation, lChange
 ring_parser_icg_beforeequal
+ring_parser_icg_gencallbracemethod
+Type: int
+nMark1
+Type: List *
+pMark
+ring_parser_icg_gencall
+ring_parser_icg_genfreetemplists
+ring_parser_icg_genppmm
+Type: List *
+pMark
+Type: int
+nMark
 ring_parser_icg_showoutput
 Type: int
 x,y,nCount,nCount2
