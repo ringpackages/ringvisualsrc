@@ -20,19 +20,23 @@ func main
 	# Merge the two lists (Requires at least Ring 1.20)
 
 		Add(aList,aList2,True)
+		aList + (cDir+"\tests\tryccode\test.h")
+		aList + (cDir+"\tests\tryccode\test.c")
 
 	# Process the Files 
 
 		for cFile in aList
 
 			# Ignore the vmoop.c file
-				if substr(cFile,"vmoop") loop ok
+				if substr(cFile,"vmoop") or substr(cFile,"rconfig")
+					loop ok
 
 			# Read the file and convert it to a List
 				cData = read(cFile)
 				aDataList = Str2List(cData)
 
 			# Check if we need to add a new line
+
 				if len(trim(aDataList[2])) != 0
 					insert(aDataList,1,"")
 					? "Add new line to file: " + cFile

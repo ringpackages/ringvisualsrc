@@ -11,7 +11,9 @@ Type: List *
 pVar, *pList
 ring_vm_loadaddress
 Type: int
-lFound
+x,lFound
+Type: FuncCall *
+pFuncCall
 ring_vm_assignment
 Type: List *
 pVar,*pList, *pList2
@@ -21,6 +23,8 @@ Type: double
 nNum1
 Type: Item *
 pItem
+Type: int
+nBeforeEqual
 ring_vm_inc
 Type: List *
 pVar
@@ -73,7 +77,7 @@ pList, *pList2
 Type: Item *
 pItem
 Type: int
-x
+x, lCont
 ring_vm_freeloadaddressscope
 ring_vm_loadaddressfirst
 ring_vm_printstack
@@ -88,3 +92,9 @@ Type: Item *
 pItem
 Type: String *
 pString
+ring_vm_stackswap
+Type: Item
+vTempItem
+ring_vm_isinsideloop
+Type: FuncCall *
+pFuncCall

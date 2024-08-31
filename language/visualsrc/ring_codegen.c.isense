@@ -2,12 +2,10 @@ ring_codegen_h
 Parent: IC_OPERATIONS
 ICO_NEWLINE=0
 ICO_FILENAME
-ICO_PRINT
 ICO_NEWCLASS
 ICO_NEWFUNC
 ICO_DUPLICATE
 ICO_NEWOBJ
-ICO_GIVE
 ICO_PRIVATE
 ICO_NEWLABEL
 ICO_JUMP
@@ -17,6 +15,7 @@ ICO_JUMPFOR
 ICO_JUMPZERO2
 ICO_JUMPONE2
 ICO_PUSHNULLTHENJUMP
+ICO_PUSHNTHENJUMP
 ICO_LOADADDRESS
 ICO_ASSIGNMENT
 ICO_LOADSUBADDRESS
@@ -29,14 +28,14 @@ ICO_NOTEQUAL
 ICO_LESSEQUAL
 ICO_GREATEREQUAL
 ICO_PUSHC
+ICO_PUSHNL
 ICO_PUSHN
 ICO_PUSH2N
-ICO_PUSH3N
-ICO_PUSH4N
 ICO_PUSHV
 ICO_PUSHP
 ICO_PUSHPV
 ICO_PUSHPLOCAL
+ICO_PUSHARG
 ICO_SUM
 ICO_SUB
 ICO_MUL
@@ -46,22 +45,29 @@ ICO_NEG
 ICO_INC
 ICO_INCP
 ICO_POW
+ICO_SUMN
+ICO_SUBN
+ICO_MULN
+ICO_DIVN
+ICO_MODN
+ICO_POWN
 ICO_LOADFUNC
 ICO_CALL
 ICO_RETURN
 ICO_RETNULL
 ICO_RETFROMEVAL
 ICO_RETITEMREF
+ICO_RETURNN
 ICO_LISTSTART
 ICO_LISTITEM
+ICO_LISTITEMN
+ICO_LISTITEMC
 ICO_LISTEND
 ICO_AND
 ICO_OR
 ICO_NOT
 ICO_FREESTACK
 ICO_BLOCKFLAG
-ICO_FUNCEXE
-ICO_ENDFUNCEXE
 ICO_BYE
 ICO_EXITMARK
 ICO_POPEXITMARK
@@ -98,6 +104,7 @@ ICO_BITXOR
 ICO_BITSHL
 ICO_BITSHR
 ICO_STEPNUMBER
+ICO_STEPFROMREG
 ICO_POPSTEP
 ICO_LOADAFIRST
 ICO_INCPJUMPSTEP1
@@ -120,21 +127,19 @@ RING_PARSER_ICG_OPERATIONCODE
 RING_PARSER_ICG_PARA1
 RING_PARSER_ICG_PARA2
 RING_PARSER_ICG_PARENTCLASSPOS
-RING_PARSER_ICG_LOADAASSIGNPOS
 RING_PARSER_ICG_LOADASETTERPOS
-RING_PARSER_ICG_LOADAGETTERPOS
 RING_PARSER_ICG_USEASSIGNMENT
 RING_PARSER_ICG_USESETPROPERTY
 RING_PARSER_ICG_NORMALPP
 RING_PARSER_ICG_NORMALMM
+RING_PARSER_ICG_ASSIGNPTRENABLEPOS
 RING_PARSER_ICG_GOTOLASTOP
+RING_PARSER_ICG_NOOPERATION
 ring_parser_icg_newlabel(pParser)
-ring_parser_icg_getlastoperation(pParser)
 ring_parser_icg_setlastoperation(pParser,nOPCode)
 ring_parser_icg_instructionscount(pParser)
 ring_parser_icg_instructionslistsize(pParser)
 ring_parser_icg_getoperationlist(pParser,nIndex)
-ring_parser_icg_getoperationbeforelastoperation(pParser)
 ring_parser_icg_getoperationatpos(pParser,nIndex)
 ring_parser_icg_getoperandint(pParser,nPos)
 ring_parser_icg_getoperanddouble(pParser,nPos)
@@ -161,18 +166,35 @@ x
 ring_parser_icg_newlabel2
 ring_parser_icg_setopcode
 ring_parser_icg_deleteoperand
+ring_parser_icg_getlaststring
+ring_parser_icg_setoperandint
+ring_parser_icg_getlastoperation
+ring_parser_icg_getoperationbeforelastoperation
 ring_parser_icg_loadfunction
 ring_parser_icg_loadaddress
-ring_parser_icg_loadaddressassignmentpos
 ring_parser_icg_loadaddresstoloadfunction
 ring_parser_icg_freestack
 ring_parser_icg_newline
 ring_parser_icg_parentclassname
+ring_parser_icg_deleteparentclassname
 ring_parser_icg_newpackagename
 ring_parser_icg_pushn
 Type: int
 nLastOperation, lChange
 ring_parser_icg_beforeequal
+ring_parser_icg_retnull
+ring_parser_icg_listitem
+Type: int
+nLastOperation
+ring_parser_icg_gensetglobalscope
+Type: int
+nGlobalScope
+ring_parser_icg_math
+Type: int
+nLastOperation
+ring_parser_icg_returnn
+Type: int
+nLastOperation
 ring_parser_icg_gencallbracemethod
 Type: int
 nMark1

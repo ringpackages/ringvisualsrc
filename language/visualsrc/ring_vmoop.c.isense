@@ -32,6 +32,7 @@ ring_vm_oop_property
 Type: List *
 pVar,*pScope
 ring_vm_oop_loadmethod
+ring_vm_oop_loadmethod2
 Type: List *
 pVar,*pList,*pList2,*pList3,*pSuper
 Type: int
@@ -100,7 +101,6 @@ pList
 ring_vm_oop_pushclasspackage
 Type: List *
 pList2
-ring_vm_oop_popclasspackage
 ring_vm_oop_deletepackagesafter
 Type: int
 t
@@ -125,12 +125,12 @@ nIns
 ring_vm_oop_setproperty
 Type: List *
 pList, *pList2
-Type: RING_VM_IR_ITEMTYPE *
-pItem, *pRegItem
+Type: Item *
+pGetSetItem
 Type: String *
-pString
+pString, *pString2
 Type: int
-nIns, nIns2
+nIns
 ring_vm_oop_objvarfromobjlist
 Type: int
 nType
@@ -144,22 +144,22 @@ Type: Item *
 pItem
 ring_vm_oop_operatoroverloading
 Type: List *
-pList2
+pList2, *pIns
 Type: Item *
 pItem
-Type: RING_VM_IR_ITEMTYPE *
-pRegItem
-Type: String *
-pString
 Type: int
 nObjType, nIns
 ring_vm_oop_callmethodfrombrace
+ring_vm_oop_preparecallmethodfrombrace
 Type: List *
 pList,*pList2
 Type: FuncCall *
 pFuncCall
 Type: const char *
 cStr
+ring_vm_oop_isattribute
+Type: int
+x
 ring_vm_oop_ismethod
 Type: List *
 pList2,*pList3
@@ -185,3 +185,4 @@ Type: List *
 pList
 Type: int
 lResult
+ring_vm_oop_addattribute

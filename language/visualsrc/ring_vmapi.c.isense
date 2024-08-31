@@ -18,8 +18,8 @@ RING_OUTPUT_RETLISTBYREF
 RING_OUTPUT_RETNEWREF
 RING_VARVALUE_INT
 RING_VARVALUE_FLOAT
+RING_API_MINLISTSIZEFORUSINGBLOCKS
 RING_API_STATE
-RING_API_PARALIST
 RING_API_PARACOUNT
 RING_API_GETSTRING(nPara)
 RING_API_GETNUMBER(nPara)
@@ -39,8 +39,6 @@ RING_API_RETLIST(pList)
 RING_API_NEWLIST
 RING_API_RETCPOINTER(pPtr,cType)
 RING_API_GETCPOINTER(nPara,cType)
-RING_API_PUSHPVALUE(pPtr)
-RING_API_OBJTYPE
 RING_API_GETSTRINGRAW
 RING_API_GETSTRINGSIZE(nPara)
 RING_API_SETNULLPOINTER(nPara)
@@ -74,12 +72,41 @@ RING_API_GETCHARPOINTER(nPara)
 RING_API_ISLISTORNULL(nPara)
 RING_API_NEWLISTUSINGBLOCKS1D(nSize)
 RING_API_NEWLISTUSINGBLOCKS2D(nRows,nCols)
+RING_API_CALLERSCOPE
+RING_API_SCOPESCOUNT
 ring_vm_funcregister2
 Type: List *
 pList
+Type: CFunction *
+pCFunc
 ring_vm_loadcfunctions
 ring_vm_api_isstring
+Type: VM *
+pVM
 ring_vm_api_isnumber
+Type: VM *
+pVM
+ring_vm_api_isptr
+Type: VM *
+pVM
+ring_vm_api_setptr
+Type: VM *
+pVM
+ring_vm_api_getstring
+Type: VM *
+pVM
+ring_vm_api_getstringsize
+Type: VM *
+pVM
+ring_vm_api_getnumber
+Type: VM *
+pVM
+ring_vm_api_getpointer
+Type: VM *
+pVM
+ring_vm_api_getpointertype
+Type: VM *
+pVM
 ring_vm_api_islist
 Type: int
 nType
@@ -93,13 +120,6 @@ Type: List *
 pList, *pList2
 Type: VM *
 pVM
-Type: Item *
-pItem
-ring_vm_api_getstring
-ring_vm_api_getstringsize
-ring_vm_api_getnumber
-ring_vm_api_getpointer
-ring_vm_api_getpointertype
 ring_vm_api_getlist
 Type: int
 nType
@@ -108,9 +128,6 @@ pItem
 Type: List *
 pList
 ring_vm_api_retlist
-ring_vm_api_newlist
-Type: List *
-pList
 ring_vm_api_retcpointer2
 Type: List *
 pList
@@ -161,12 +178,26 @@ Type: VM *
 pVM
 ring_vm_api_intvalue
 ring_vm_api_floatvalue
+ring_vm_api_newlist
+Type: List *
+pList
+Type: FuncCall *
+pFuncCall
 ring_vm_api_newlistusingblocks
 Type: List *
 pList, *pList2, *pList3, *pSubLists
 Type: int
-x,y
+x, y, lUseBlocks
 Type: Items *
 pItems
 Type: Item *
 pItem
+ring_vm_api_callerscope
+ring_vm_api_scopescount
+ring_vm_api_paracount
+ring_vm_api_ignorecpointertypecheck
+ring_vm_api_retnumber
+ring_vm_api_retstring
+ring_vm_api_retstring2
+ring_vm_api_retstringsize
+ring_vm_api_getstringraw

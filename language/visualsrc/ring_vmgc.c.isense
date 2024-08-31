@@ -22,9 +22,17 @@ lErrorOnAssignment: 1
 Type: unsigned int
 lErrorOnAssignment2: 1
 Type: unsigned int
+lCheckBeforeAssignmentDone: 1
+Type: unsigned int
 lDeletedByParent: 1
 Type: unsigned int
 lDontRefAgain: 1
+Type: unsigned int
+lTrackedList: 1
+Type: unsigned int
+lArgCache: 1
+Type: unsigned int
+nListType: 3
 END:
 Type: ListGCData
 struct ListGCData
@@ -36,20 +44,22 @@ Mark: ->
 ListGCData *
 ring_pooldata
 RING_USEPOOLMANAGER
-RING_USEPOOLMANAGER
-RING_TRACKALLOCATIONS
+RING_POOLMANAGER_ITEMSINBLOCK
+RING_POOLMANAGER_ITEMSINBLOCKL2
+RING_POOLMANAGER_ITEMSINBLOCKL3
+RING_POOLMANAGER_ITEMSINBLOCKStateLevel
+RING_POOLMANAGER_ITEMSINBLOCK
+RING_POOLMANAGER_ITEMSINBLOCKL2
+RING_POOLMANAGER_ITEMSINBLOCKL3
+RING_POOLMANAGER_ITEMSINBLOCKStateLevel
 RING_POOLMANAGER_NOTFOUND
 RING_POOLMANAGER_ITEMSTRINGSIZE
-RING_POOLMANAGER_ITEMSINBLOCK
 RING_POOLMANAGER_LEVEL1
 RING_POOLMANAGER_ITEMSTRINGSIZEL2
-RING_POOLMANAGER_ITEMSINBLOCKL2
 RING_POOLMANAGER_LEVEL2
 RING_POOLMANAGER_ITEMSTRINGSIZEL3
-RING_POOLMANAGER_ITEMSINBLOCKL3
 RING_POOLMANAGER_LEVEL3
 RING_POOLMANAGER_ITEMSTRINGSIZEStateLevel
-RING_POOLMANAGER_ITEMSINBLOCKStateLevel
 RING_VM_STATE_NUMBERS_COUNT
 RING_VM_STATE_POINTERS_COUNT
 RING_VM_BLOCKSTART
@@ -172,14 +182,6 @@ pBlocks
 Type: void *
 pMutex
 Type: unsigned int
-nAllocCount
-Type: unsigned int
-nFreeCount
-Type: unsigned int
-nSmallAllocCount
-Type: unsigned int
-nSmallFreeCount
-Type: unsigned int
 nItemsInBlock
 Type: unsigned int
 nItemsInBlockL2
@@ -201,7 +203,6 @@ PoolManager *
 ring_gc_h
 ring_vm_gc_cleardata(pItem)
 ring_vm_gc_newitemreference(pItem)
-GCLog
 ring_vm_gc_checknewreference
 Type: Item *
 pItem
@@ -228,6 +229,9 @@ pItem
 ring_vm_gc_listpointerisnotmine
 Type: Item *
 pItem
+ring_vm_gc_removetrack
+Type: int
+nPos
 ring_list_iscopybyref
 ring_list_enablecopybyref
 ring_list_disablecopybyref
@@ -251,6 +255,8 @@ Type: List *
 pVariable
 Type: int
 nOPCode
+Type: RingState *
+pRingState
 ring_list_getrefcontainer
 ring_list_collectcycles_gc
 Type: List *
@@ -284,6 +290,10 @@ ring_list_isnewref
 ring_list_isdontrefagain
 ring_list_enabledontrefagain
 ring_list_disabledontrefagain
+ring_list_setlisttype
+ring_list_getlisttype
+ring_list_isargcache
+ring_list_enableargcache
 ring_list_enableerroronassignment
 ring_list_disableerroronassignment
 ring_list_iserroronassignment
@@ -305,6 +315,8 @@ pList
 ring_list_iserroronassignment2
 ring_list_enableerroronassignment2
 ring_list_disableerroronassignment2
+ring_list_enabledontdelete
+ring_list_disabledontdelete
 ring_malloc
 Type: void *
 pMemory
@@ -355,6 +367,21 @@ Type: List *
 pList
 Type: RingState *
 pRingState
+Type: void *
+pBlockStart
+ring_state_willunregisterblock
+Type: int
+x, x2, x3
+Type: List *
+pList, *pVar, *pList2
+Type: Item *
+pItem, *pNewItem
+Type: Item
+vTempItem
+Type: RingState *
+pRingState
+Type: void *
+pBlockStart, *pBlockEnd
 ring_vm_gc_deleteitem
 ring_poolmanager_new
 ring_poolmanager_newblock

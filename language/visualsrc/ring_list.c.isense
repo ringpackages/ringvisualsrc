@@ -85,6 +85,7 @@ pNewList2
 ring_list_deleteallitems_gc
 Type: Items *
 pItems,*pItemsNext
+ring_list_finishdelete_gc
 Type: ListBlocks *
 pBlocks
 ring_list_copy_tohighlevel_gc
@@ -100,6 +101,7 @@ ring_list_setcache
 ring_list_newitem_gc
 Type: Items *
 pItems
+ring_list_newitembyitemsptr_gc
 ring_list_getitem
 Type: Items *
 pItems
@@ -152,8 +154,6 @@ ring_list_addstring2_gc
 ring_list_newlist_gc
 Type: Item *
 pItem
-Type: List *
-pList2
 ring_list_setlist_gc
 Type: Item *
 pItem
@@ -162,6 +162,9 @@ Type: Item *
 pItem
 Type: List *
 pList2
+ring_list_newlistbyptr_gc
+Type: Item *
+pItem
 ring_list_setfuncpointer_gc
 Type: Item *
 pItem

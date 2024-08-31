@@ -21,8 +21,6 @@ Type: List *
 pRingPackagesMap
 Type: List *
 pCustomGlobalScopeStack
-Type: List *
-pRingCFunctions
 Type: int
 nArgc
 Type: unsigned int
@@ -77,8 +75,6 @@ Type: unsigned int
 lDisablePoolManager : 1
 Type: unsigned int
 lCreateListsUsingBlocks : 1
-Type: unsigned int
-lDontCheckStateBlocks : 1
 Type: PoolManager
 vPoolManager
 END:
@@ -124,6 +120,8 @@ ring_state_delete
 ring_state_init
 Type: RingState *
 pRingState
+Type: unsigned int
+lDisablePoolManager
 ring_state_runcode
 ring_state_findvar
 Type: VM *
@@ -161,7 +159,13 @@ ring_state_runobjectstring
 ring_state_runprogram
 Type: VM *
 pVM
+ring_state_newbytecode
+Type: VM *
+pVM
+Type: int
+x
 ring_state_log
+ring_state_runbytecode
 ring_state_runstring
 Type: Scanner *
 pScanner

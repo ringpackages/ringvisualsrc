@@ -21,9 +21,11 @@ nFloatMark
 Type: char
 cLiteral
 Type: char
-cMLComment
+nMLComment
 Type: char
 lHashComments
+Type: char
+lMultiCharOperators
 END:
 Type: Scanner
 struct Scanner
@@ -40,6 +42,7 @@ K_OR
 K_AND
 K_NOT
 K_FOR
+K_FOREACH
 K_NEW
 K_FUNC
 K_FROM
@@ -97,6 +100,7 @@ K_DISABLEHASHCOMMENTS
 END:
 Type: SCANNER_KEYWORD
 SCANNER_KEYWORD
+RING_SCANNER_KEYWORDSCOUNT
 Parent: SCANNER_OPERATOR
 OP_PLUS = 1
 OP_MINUS
@@ -142,6 +146,7 @@ OP_POWEQUAL
 END:
 Type: SCANNER_OPERATOR
 SCANNER_OPERATOR
+RING_SCANNER_OPERATORSCOUNT
 RING_SCANNER_TOKENTYPE
 RING_SCANNER_TOKENVALUE
 RING_SCANNER_TOKENINDEX
@@ -183,6 +188,10 @@ pString
 Type: int
 nTokenIndex
 ring_scanner_keywords
+Type: char
+cKeyword[RING_SMALLBUF]
+Type: int
+x
 ring_scanner_addtoken
 Type: List *
 pList
@@ -201,6 +210,8 @@ ring_scanner_isoperator
 Type: int
 nPos
 ring_scanner_operators
+Type: int
+x
 ring_scanner_lasttokentype
 x
 Type: List *

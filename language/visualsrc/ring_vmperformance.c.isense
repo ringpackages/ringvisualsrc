@@ -1,5 +1,9 @@
 ring_vm_pushp
 ring_vm_pushplocal
+ring_vm_pusharg
+Type: List *
+pList
+ring_vm_updatescopeinfo
 ring_vm_incp
 Type: List *
 pVar
@@ -11,6 +15,8 @@ Type: Item *
 pItem
 Type: double
 nNum1,nNum2
+Type: int
+nLine, lPerformance
 ring_vm_incpjump
 Type: Item *
 pItem
@@ -27,3 +33,9 @@ ring_vm_inclpjumpstep1
 ring_vm_setopcode
 Type: int
 nIns,nOPCode
+ring_vm_sumn
+ring_vm_subn
+ring_vm_muln
+ring_vm_divn
+ring_vm_modn
+ring_vm_pown
