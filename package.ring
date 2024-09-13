@@ -16,7 +16,7 @@ aPackageInfo = [
 	:libs = 	[
 		[
 			:name = "ringsrc",
-			:version = "1.20.1",
+			:version = "1.21.2",
 			:providerusername = "ringpackages"
 		]
 	],
