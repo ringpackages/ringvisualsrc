@@ -3,6 +3,11 @@ Type: int
 x,nMark
 Type: List *
 pMark
+ring_parser_logicand
+Type: int
+x,nMark
+Type: List *
+pMark
 ring_parser_logicnot
 Type: int
 x
@@ -36,7 +41,7 @@ x,x2,x3,nLastOperation,nCount,nNOOP,nToken,nMark,nFlag2,lThisOrSelfLoadA,lThisLo
 Type: List *
 pLoadAPos, *pLoadAMark,*pList, *pMark,*pAssignmentPointerPos
 Type: char
-lSetProperty,lequal,nBeforeEqual,lNewAfterEqual
+lSetProperty,lequal,nBeforeEqual,lNewAfterEqual,lNegative
 Type: char
 cFuncName[RING_MEDIUMBUF]
 Type: char
