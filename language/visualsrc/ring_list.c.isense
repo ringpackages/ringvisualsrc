@@ -25,7 +25,7 @@ nSize
 Type: unsigned int
 nNextItem
 Type: struct Items *
-pLastItemLastAccess
+pLastItem
 Type: struct Item **
 pItemsArray
 Type: struct HashTable *
@@ -43,10 +43,10 @@ struct List *
 Type: List
 Mark: ->
 List *
-RING_LISTOFOBJS_FINDSTRING
 RING_LISTOFOBJS_FINDNUMBER
-RING_LISTREF_INC
-RING_LISTREF_DEC
+RING_LISTOFOBJS_FINDSTRING
+RING_LISTOFOBJS_FINDCPOINTER
+RING_LISTOFOBJS_FINDLISTREF
 RING_LISTBLOCKTYPE_ITEM
 RING_LISTBLOCKTYPE_ITEMS
 RING_LISTBLOCKTYPE_LIST
@@ -216,6 +216,11 @@ pList2
 ring_list_findpointer
 Type: unsigned int
 x
+ring_list_findlistref
+Type: unsigned int
+x,nCount
+Type: List *
+pList2, *pList3
 ring_list_sortnum
 Type: unsigned int
 x,y,nMid

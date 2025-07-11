@@ -5,18 +5,18 @@ aPackageInfo = [
 	:developer = "Mahmoud Fayed",
 	:email = "msfclipper@yahoo.com",
 	:license = "MIT License",
-	:version = "1.22",
-	:ringversion = "1.22",
+	:version = "1.23",
+	:ringversion = "1.23",
 	:versions = 	[
 		[
-			:version = "1.22",
+			:version = "1.23",
 			:branch = "master"
 		]
 	],
 	:libs = 	[
 		[
 			:name = "ringsrc",
-			:version = "1.22",
+			:version = "1.23",
 			:providerusername = "ringpackages"
 		]
 	],
@@ -117,10 +117,6 @@ aPackageInfo = [
 		"language/visualsrc/ring_string.config",
 		"language/visualsrc/ring_string.fpt",
 		"language/visualsrc/ring_string.ssf",
-		"language/visualsrc/ring_test.c.isense",
-		"language/visualsrc/ring_test.config",
-		"language/visualsrc/ring_test.fpt",
-		"language/visualsrc/ring_test.ssf",
 		"language/visualsrc/ring_vm.c.isense",
 		"language/visualsrc/ring_vm.config",
 		"language/visualsrc/ring_vm.fpt",

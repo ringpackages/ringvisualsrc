@@ -201,6 +201,8 @@ Type: PoolManager
 Mark: ->
 PoolManager *
 ring_gc_h
+RING_LISTREF_INC
+RING_LISTREF_DEC
 ring_vm_gc_cleardata(pItem)
 ring_vm_gc_newitemreference(pItem)
 ring_vm_gc_checknewreference
@@ -354,7 +356,9 @@ pPoolDataL2
 Type: PoolDataL3 *
 pPoolDataL3
 Type: int
-x, nLevel, nUseMalloc
+nLevel, nUseMalloc
+Type: size_t
+x
 ring_state_registerblock
 Type: List *
 pList
