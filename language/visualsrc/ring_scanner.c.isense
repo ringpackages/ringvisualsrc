@@ -18,14 +18,16 @@ Type: unsigned int
 nLinesCount
 cState
 nFloatMark
-Type: char
+Type: unsigned char
 cLiteral
-Type: char
+Type: unsigned char
 nMLComment
-Type: char
+Type: unsigned char
 lHashComments
-Type: char
+Type: unsigned char
 lMultiCharOperators
+Type: unsigned char
+lEnableTokensOutput
 END:
 Type: Scanner
 struct Scanner
@@ -143,6 +145,9 @@ OP_BITXOREQUAL
 OP_SHLEQUAL
 OP_SHREQUAL
 OP_POWEQUAL
+OP_LESSEQUAL
+OP_GREATEREQUAL
+OP_NOTEQUAL
 END:
 Type: SCANNER_OPERATOR
 SCANNER_OPERATOR
@@ -152,7 +157,7 @@ Type: const char *
 cOperator
 Type: const char *
 cSecond
-Type: int
+Type: unsigned int
 nToken
 END:
 Type: OperatorInfo
@@ -201,25 +206,25 @@ Type: List *
 pList
 Type: String *
 pString
-Type: const char *
-cLastToken
 Type: int
 nTokenIndex
 ring_scanner_keywords
 Type: char
 cKeyword[RING_SMALLBUF]
-Type: int
+Type: unsigned int
 x
 ring_scanner_addtoken
 Type: List *
 pList
 ring_scanner_checktoken
-Type: int
+Type: unsigned int
 nResult
 Type: char
 cStr[RING_SMALLBUF]
 Type: char *
 cActiveStr
+Type: List *
+pList
 ring_scanner_isnumber
 Type: unsigned int
 x,x2,lHex
@@ -228,7 +233,7 @@ cStr
 Type: unsigned int
 nLen
 ring_scanner_processnumber
-Type: int
+Type: unsigned int
 nLen,nWriteIndex,nReadIndex,lHex,lHexDetection,lLeadingZeros
 Type: char *
 cStr
@@ -236,16 +241,18 @@ Type: char
 c
 ring_scanner_checklasttoken
 ring_scanner_isoperator
-Type: int
+Type: unsigned int
 nPos
 ring_scanner_operators
-Type: int
+Type: unsigned int
 x
 ring_scanner_lasttokentype
+Type: unsigned int
 x
 Type: List *
 pList
 ring_scanner_lasttokenvalue
+Type: unsigned int
 x
 Type: List *
 pList
@@ -255,27 +262,17 @@ pList
 Type: String *
 pString
 ring_scanner_endofline
-ring_scanner_addreturn
-Type: List *
-pList
-ring_scanner_addreturn2
-Type: List *
-pList
-ring_scanner_addreturn3
-Type: List *
-pList
 ring_scanner_printtokens
-Type: int
+Type: unsigned int
 x,nType,nPos
 Type: List *
 pList
 Type: char *
 cString
-ring_scanner_getkeywordtext
 ring_scanner_changekeyword
 Type: char *
 cStr
-Type: int
+Type: unsigned int
 x,nResult
 Type: String *
 word1, *word2, *activeword
@@ -284,7 +281,7 @@ cStr2[RING_CHARBUF]
 ring_scanner_changeoperator
 Type: char *
 cStr
-Type: int
+Type: unsigned int
 x,nResult
 Type: String *
 word1, *word2, *activeword
@@ -296,25 +293,39 @@ cFileName
 Type: RING_FILE
 fp
 c
-Type: int
-nSize,nLine
+Type: unsigned int
+x,nSize,nLine,lEnableTokensOutput
 Type: char
 cFileName2[RING_PATHSIZE]
-Type: unsigned int
-x
 ring_scanner_setandgenendofline
 ring_scanner_readtwoparameters
-Type: int
+Type: unsigned int
 x,nSize,nSpaces
 Type: char *
 cString
 ring_scanner_processtoken
 Type: char *
 pStart, *pChar
-Type: int
+Type: unsigned int
 t,nPos,nSize,lXExist
 ring_scanner_checkmulticharoperator
-Type: int
+Type: unsigned int
 x, lOperatorFound
 Type: const char *
 cLastToken
+ring_scanner_getkeywordtext
+ring_scanner_getmulticharoperatortext
+Type: unsigned int
+x
+ring_scanner_addreturn
+Type: List *
+pList
+ring_scanner_addreturn2
+Type: List *
+pList
+ring_scanner_addreturn3
+Type: List *
+pList
+ring_scanner_registertoken
+Type: List *
+pList

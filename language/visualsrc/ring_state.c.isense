@@ -25,11 +25,11 @@ Type: int
 nArgc
 Type: unsigned int
 nScannerError
-Type: int
+Type: unsigned int
 nLoadAgain
-Type: int
+Type: unsigned int
 nCustomGlobalScopeCounter
-Type: int
+Type: unsigned int
 nInstructionsCount
 Type: unsigned int
 lRun : 1
@@ -62,11 +62,15 @@ lOnlyTokens : 1
 Type: unsigned int
 lNoLineNumber : 1
 Type: unsigned int
-lRunFromThread : 1
+lUsingThreads : 1
+Type: unsigned int
+lRunFromSubThread : 1
 Type: unsigned int
 lNotCaseSensitive : 1
 Type: unsigned int
 lCommentsAsTokens : 1
+Type: unsigned int
+lScannerCommandsAsTokens : 1
 Type: unsigned int
 lRunFromObjectFile : 1
 Type: unsigned int
@@ -86,6 +90,9 @@ struct RingState *
 Type: RingState
 Mark: ->
 RingState *
+RING_VERSION_MAJOR
+RING_VERSION_MINOR
+RING_VERSION_PATCH
 RING_STATE_VERSION
 RING_STATE_VERSIONANDPATCH
 RING_WARNING_UNKNOWNOPTION
@@ -117,12 +124,12 @@ lRingStateCGI
 ring_state_new
 Type: RingState *
 pRingState
-ring_state_delete
 ring_state_init
 Type: RingState *
 pRingState
 Type: unsigned int
 lDisablePoolManager
+ring_state_delete
 ring_state_runcode
 ring_state_findvar
 Type: VM *
@@ -134,19 +141,9 @@ Type: VM *
 pVM
 Type: List *
 pList
-ring_state_main
-Type: int
-x,lCGI,lRun,lPrintIC,lPrintICFinal,lTokens,lRules,lIns,lPerformance,lSrc,lGenObj,lGenCObj,lWarn
-Type: char *
-cStr
-ring_state_execute
-Type: RingState *
-pRingState
 ring_state_runfile
 Type: Scanner *
 pScanner
-Type: VM *
-pVM
 Type: RING_FILE
 pFile
 cStartup
@@ -163,20 +160,27 @@ pVM
 ring_state_newbytecode
 Type: VM *
 pVM
-Type: int
+Type: unsigned int
 x
 ring_state_log
 ring_state_runbytecode
 ring_state_runstring
 Type: Scanner *
 pScanner
-Type: VM *
-pVM
 Type: const char *
 cFileName
 Type: int
-x,lCont,lRunVM,lFreeFilesList
+x,lCont,lRunVM,lFreeFilesList,nFileSize
 c
+ring_state_exit
 ring_state_cgiheader
+ring_state_main
+Type: int
+x,lCGI,lRun,lPrintIC,lPrintICFinal,lTokens,lRules,lIns,lPerformance,lSrc,lGenObj,lGenCObj,lWarn
+Type: char *
+cStr
+ring_state_execute
+Type: RingState *
+pRingState
 ring_state_segfaultaction
 ring_state_usageinfo

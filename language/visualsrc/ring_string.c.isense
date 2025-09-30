@@ -19,12 +19,15 @@ struct String *
 Type: String
 Mark: ->
 String *
+ring_string_tolower_gc(pState,pString)
+ring_string_toupper_gc(pState,pString)
+ring_string_get_gc(pState,pString)
 ring_string_tolower(pString)
 ring_string_toupper(pString)
 ring_string_get(pString)
 RING_MEMCPY(cStrDest,cStrSrc,nSize)
 ring_string_new_gc
-Type: int
+Type: unsigned int
 x
 ring_string_new2_gc
 Type: String *
@@ -32,63 +35,37 @@ pString
 Type: unsigned int
 x, nSize
 ring_string_delete_gc
-ring_string_size
 ring_string_set_gc
-Type: int
+Type: unsigned int
 x
 ring_string_set2_gc
 Type: unsigned int
 x, nRequiredSize, nNewCapacity
 ring_string_add_gc
-Type: int
+Type: unsigned int
 x
 ring_string_add2_gc
 Type: unsigned int
-x, nAddSize, nOriginalSize, nRequiredSize, nNewCapacity
+x, nOriginalSize, nRequiredSize, nNewCapacity
 Type: char *
 pNewStr
-ring_string_print
 ring_string_setfromint_gc
 cStr[RING_SMALLBUF]
-ring_string_lower
-Type: unsigned int
-x, nLen
-ring_string_lower2
-Type: int
-x
-ring_string_upper
-Type: unsigned int
-x, nLen
-ring_string_upper2
-Type: int
-x
-ring_string_find_gc
-ring_string_find2_gc
-ring_string_find3_gc
-ring_string_findsubstr_gc
-Type: int
-x, nPos
-ring_string_strdup
+ring_string_size_gc
+ring_string_print_gc
+ring_string_strdup_gc
 Type: char *
 cString
-Type: int
+Type: unsigned int
 x,nSize
-ring_string_looksempty
-Type: int
-x
-ring_string_new2
 ring_string_new
-ring_string_add
-ring_string_add2
+ring_string_new2
+ring_string_delete
 ring_string_set
 ring_string_set2
-ring_string_find
-ring_string_find2
-ring_string_find3
-ring_string_delete
+ring_string_add
+ring_string_add2
 ring_string_setfromint
-ring_string_word
-Type: char *
-cString
-Type: int
-x,nStart,nEnd,nSize,nWord,nOutIndex
+ring_string_size
+ring_string_print
+ring_string_strdup

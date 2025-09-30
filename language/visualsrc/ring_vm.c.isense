@@ -6,6 +6,12 @@ RING_VM_STACK_SIZE
 RING_VM_STACK_CHECKOVERFLOW
 RING_VM_FREE_STACK_IN_CLASS_REGION_AFTER
 RING_VM_ARGCACHE_SIZE
+RING_VM_CUSTOMMUTEX_COUNT
+RING_VM_CUSTOMMUTEX_VARHASHTABLE
+RING_VM_CUSTOMMUTEX_FUNCHASHTABLE
+RING_VM_CUSTOMMUTEX_ITEMREFCOUNT
+RING_VM_CUSTOMMUTEX_LISTREFCOUNT
+RING_VM_CUSTOMMUTEX_LNEWREF
 RING_VM_BC_ITEMS_COUNT
 RING_VM_MAXDIGITSINNUMBER
 RING_BYTECODEDOUBLE
@@ -22,6 +28,8 @@ Type: void *
 pPointer
 Type: const char *
 pString
+Type: unsigned int
+uiNumber
 Type: RING_BYTECODEDOUBLE
 dNumber
 END:
@@ -37,7 +45,7 @@ lFlagReg2: 1
 Type: unsigned int
 lLiteral: 1
 Type: unsigned int
-lUnused: 1
+lUnusedFlag: 1
 Type: unsigned int
 nReg1Type: 2
 Type: unsigned int
@@ -106,14 +114,14 @@ Type: unsigned int
 nNestedLists
 Type: unsigned int
 nParaCount
-Type: char
-nType
-Type: char
-nStatus
-Type: char
-nLoadAddressScope
-Type: char
-lMethod
+Type: unsigned int
+nType: 8
+Type: unsigned int
+nStatus: 8
+Type: unsigned int
+nLoadAddressScope: 8
+Type: unsigned int
+lMethod: 8
 END:
 Type: FuncCall
 struct FuncCall
@@ -240,28 +248,28 @@ Type: unsigned int
 nPausePC
 Type: unsigned int
 nArgCacheCount
-Type: unsigned char
-nInsideEval
-Type: unsigned char
-nInClassRegion
-Type: unsigned char
-nGetSetObjType
-Type: unsigned char
-nBeforeEqual
-Type: unsigned char
-nDecimals
-Type: unsigned char
-nRetItemRef
-Type: unsigned char
-nCallClassInit
-Type: unsigned char
-nRunCode
-Type: unsigned char
-nTraceEvent
-Type: unsigned char
-nEvalInScope
-Type: unsigned char
-nNoSetterMethod
+Type: unsigned int
+nInsideEval: 8
+Type: unsigned int
+nInClassRegion: 8
+Type: unsigned int
+nGetSetObjType: 8
+Type: unsigned int
+nBeforeEqual: 8
+Type: unsigned int
+nDecimals: 8
+Type: unsigned int
+nRetItemRef: 8
+Type: unsigned int
+nCallClassInit: 8
+Type: unsigned int
+nRunCode: 8
+Type: unsigned int
+nTraceEvent: 8
+Type: unsigned int
+nEvalInScope: 8
+Type: unsigned int
+nNoSetterMethod: 8
 Type: unsigned int
 lActiveCatch: 1
 Type: unsigned int
@@ -319,7 +327,9 @@ aFuncCall[RING_VM_STACK_SIZE]
 Type: List
 aScopes[RING_VM_STACK_SIZE]
 Type: List *
-pArgCache[RING_VM_ARGCACHE_SIZE]
+aArgCache[RING_VM_ARGCACHE_SIZE]
+Type: void *
+aCustomMutex[RING_VM_CUSTOMMUTEX_COUNT]
 END:
 Type: VM
 struct VM
@@ -401,6 +411,7 @@ RING_VM_IR_READP
 RING_VM_IR_READPVALUE(nReg)
 RING_VM_IR_READI
 RING_VM_IR_READIVALUE(nReg)
+RING_VM_IR_READUIVALUE(nReg)
 RING_VM_IR_READD
 RING_VM_IR_READDVALUE(nReg)
 RING_VM_IR_OPCODE
@@ -451,6 +462,7 @@ RING_FUNCMAP_PC
 RING_FUNCMAP_FILENAME
 RING_FUNCMAP_PRIVATEFLAG
 RING_FUNCMAP_NORMALSIZE
+RING_VM_SMALLLISTSIZE
 RING_VARSCOPE_NOTHING
 RING_VARSCOPE_LOCAL
 RING_VARSCOPE_OBJSTATE
@@ -470,49 +482,6 @@ RING_VM_SAVEGLOBALSCOPE(x)
 RING_VM_RESTOREGLOBALSCOPE(x,y)
 RING_VM_SHAREGLOBALSCOPE(dest,src)
 RING_VM_SETCURRENTSCOPE(x)
-RING_CLASSMAP_CLASSNAME
-RING_CLASSMAP_PC
-RING_CLASSMAP_PARENTCLASS
-RING_CLASSMAP_METHODSLIST
-RING_CLASSMAP_ISPARENTINFO
-RING_CLASSMAP_POINTERTOPACKAGE
-RING_CLASSMAP_POINTERTOLISTOFCLASSINSIDEPACKAGE
-RING_CLASSMAP_POINTERTOFILENAME
-RING_CLASSMAP_IMPORTEDCLASSSIZE
-RING_OBJECT_LISTSIZE
-RING_OBJECT_CLASSPOINTER
-RING_OBJECT_OBJECTDATA
-RING_OBJECT_SELFATTRIBUTE
-RING_OBJECT_ISATTRIBUTESEARCHSTART
-RING_OBJSTATE_SCOPE
-RING_OBJSTATE_METHODS
-RING_OBJSTATE_CLASS
-RING_OOPARA_STRING
-RING_OOPARA_NUMBER
-RING_OOPARA_POINTER
-RING_BRACEOBJECTS_BRACEOBJECT
-RING_BRACEOBJECTS_NSP
-RING_BRACEOBJECTS_NLISTSTART
-RING_BRACEOBJECTS_NNESTEDLISTS
-RING_BRACEOBJECTS_SETPROPERTY
-RING_BRACEOBJECTS_NLOADASCOPE
-RING_BRACEOBJECTS_NNOSETTERMETHOD
-RING_BRACEOBJECTS_ISDONTREF
-RING_BRACEOBJECTS_ISDONTREFAGAIN
-RING_SCOPENEWOBJ_SP
-RING_SETPROPERTY_OBJPTR
-RING_SETPROPERTY_OBJTYPE
-RING_SETPROPERTY_ATTRNAME
-RING_SETPROPERTY_ATTRVAR
-RING_SETPROPERTY_NBEFOREEQUAL
-RING_SETPROPERTY_VALUE
-RING_SETPROPERTY_VALUEOBJTYPE
-RING_ISMETHOD_NOTFOUND
-RING_ISMETHOD_PUBLICMETHOD
-RING_ISMETHOD_PRIVATEMETHOD
-RING_NOSETTERMETHOD_DEFAULT
-RING_NOSETTERMETHOD_ENABLE
-RING_NOSETTERMETHOD_IGNORESETPROPERTY
 RING_STATE_TRYCATCH
 RING_STATE_EXIT
 RING_STATE_RETURN
@@ -630,19 +599,13 @@ RING_VM_MAXNESTEDEVAL
 ring_vm_new
 Type: VM *
 pVM
-Type: int
+Type: unsigned int
 x
 Type: List *
 pActiveMem
 ring_vm_delete
-Type: int
+Type: unsigned int
 x
-Type: List *
-pRecord
-Type: Item *
-pItem
-Type: CFunction *
-pCFunc
 ring_vm_start
 ring_vm_towardsmainloop
 Type: VM *
@@ -652,12 +615,13 @@ Type: Scanner *
 pScanner
 Type: VM *
 pVM
+Type: unsigned int
 nRunVM,nFreeFilesList
 ring_vm_defragmentation
 Type: List *
 pRingFilesList
 ring_vm_updateclassespointers
-Type: int
+Type: unsigned int
 x,x2,x3,x4,lFound
 Type: List *
 pList, *pList2, *pList3, *pPackageList
@@ -667,13 +631,16 @@ Type: char
 cPackageName[RING_HUGEBUF]
 Type: char
 cClassName[RING_HUGEBUF]
+ring_vm_deletecfunctions
+Type: CFunction *
+pCFunc
 ring_vm_loadcode
-Type: int
+Type: unsigned int
 x,nSize
 ring_vm_tobytecode
 Type: List *
 pIR
-Type: int
+Type: unsigned int
 x,nType
 Type: ByteCode *
 pByteCode
@@ -682,29 +649,28 @@ pItem
 Type: String *
 pString
 ring_vm_deletebytecode
-Type: int
-x
-Type: ByteCode *
-pByteCode
 ring_vm_clearregisterstring
 ring_vm_setreg1topointerfromstack
 ring_vm_showbytecode
-Type: int
+Type: unsigned int
 x,y,nCount,nType
 Type: ByteCode *
 pByteCode
 ring_vm_bytecode2list
-Type: int
+Type: unsigned int
 x,y,nCount,nType
 Type: ByteCode *
 pByteCode
 Type: List *
 pIns
 ring_vm_afterscopeidoverflow
-Type: int
+Type: unsigned int
 x,y,nCount
 Type: ByteCode *
 pByteCode
+ring_vm_deleteallbytecode
+Type: unsigned int
+x
 ring_vm_mainloop
 ring_vm_fetch
 ring_vm_fetch2

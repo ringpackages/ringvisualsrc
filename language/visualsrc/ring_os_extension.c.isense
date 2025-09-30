@@ -15,10 +15,10 @@ ring_vm_os_loadfunctions
 ring_vm_os_ismsdos
 ring_vm_os_iswindows
 ring_vm_os_iswindows64
-Type: int
-lSystem64
 Type: HMODULE
 pModule
+Type: int
+lSystem64
 ring_vm_os_isunix
 ring_vm_os_ismacosx
 ring_vm_os_islinux
@@ -38,6 +38,8 @@ cDirPath[RING_PATHSIZE]
 ring_vm_os_getarch
 ring_vm_os_system
 ring_vm_os_shutdown
+Type: int
+nExitCode
 ring_vm_os_sysget
 Type: char *
 pData

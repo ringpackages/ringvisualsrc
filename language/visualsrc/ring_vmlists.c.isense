@@ -3,15 +3,11 @@ ring_vm_restorenestedlists
 ring_vm_liststart
 Type: List *
 pVar,*pList,*pNewList
-Type: int
+Type: unsigned int
 nType,nCont
 Type: Item *
 pItem
 ring_vm_listitem
-Type: String *
-pStr1
-Type: double
-nNum1
 Type: List *
 pList,*pList2,*pList3,*pList4
 Type: Item *
@@ -47,9 +43,15 @@ pStr1, *pString
 Type: double
 nNum1
 Type: List *
-pList,*pVar, *pTempList
+pList,*pVar, *pTempList, *pObj
+Type: const char *
+cOP
+Type: void *
+pPtr
+Type: unsigned int
+nType
 ring_vm_listgetvalue
-Type: int
+Type: unsigned int
 x
 Type: List *
 pList
@@ -57,15 +59,15 @@ Type: Item *
 pItem
 Type: const char *
 cStr2
-ring_vm_strcmpnotcasesensitive
-Type: int
-nNum1
-ring_vm_cleansetpropertylist
+ring_vm_listcopy
+Type: unsigned int
+x,nMax
+Type: List *
+pNewList2, *pSourceList
+Type: Item *
+pItem
 ring_vm_isoperationaftersublist
-Type: int
+Type: unsigned int
 nOPCode
 Type: List *
 pParent, *pSub, *pVar
-ring_vm_notusingvarduringdef
-Type: int
-nCont

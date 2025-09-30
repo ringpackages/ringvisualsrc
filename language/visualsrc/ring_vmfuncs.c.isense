@@ -14,16 +14,12 @@ ring_vm_call
 ring_vm_call2
 Type: List *
 pList
-Type: int
-x
 Type: FuncCall *
 pFuncCall
 ring_vm_preparecallmethod
 Type: List *
 pList
 ring_vm_return
-Type: List *
-pList
 Type: FuncCall *
 pFuncCall
 Type: void *
@@ -33,10 +29,10 @@ lThisCheck
 ring_vm_returnn
 ring_vm_returnnull
 ring_vm_newfunc
-Type: int
+Type: unsigned int
 x,nSP,nMax,lFreeParameter
 Type: List *
-pList,*aRefList,*pVar,*pRef
+aRefList,*pVar,*pRef
 Type: char *
 pParameter
 Type: const char *
@@ -61,14 +57,15 @@ ring_vm_createtemplist
 Type: List *
 pList, *pList2
 Type: int
-x, lFound, nID
+nID
+Type: unsigned int
+x, lFound
 ring_vm_anonymous
 Type: char *
 cStr
-ring_vm_isstackpointertoobjstate
 ring_vm_prevtempmem
 Type: List *
-pList, *pTemp
+pTemp
 Type: FuncCall *
 pFuncCall
 Type: int
@@ -78,31 +75,28 @@ ring_vm_timetofreetemplists
 ring_vm_freetemplists
 Type: List *
 pTempMem, *pList, *pList2
-Type: int
+Type: unsigned int
 x,x2,lFound,nStart,lListsDeleted
 Type: FuncCall *
 pFuncCall
 ring_vm_retitemref
-Type: List *
-pList
 Type: FuncCall *
 pFuncCall
-ring_vm_funccall_new
+ring_vm_funccallnew
 Type: FuncCall *
 pFuncCall
-ring_vm_funccall_delete
+ring_vm_funccalldelete
 Type: FuncCall *
 pFuncCall
-ring_vm_funccall_useloadfuncp
-ring_vm_funccall_beforecall
+ring_vm_funccalluseloadfuncp
+ring_vm_funccallbeforecall
 Type: FuncCall *
 pFuncCall
-ring_vm_funccall_paracount
+ring_vm_funccallparacount
 Type: FuncCall *
 pFuncCall
-Type: int
+Type: unsigned int
 x
-ring_vm_newscopeid
 ring_vm_optionalfunc
 Type: VM *
 pVM

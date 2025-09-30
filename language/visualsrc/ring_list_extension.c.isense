@@ -3,8 +3,6 @@ ring_vm_list_loadfunctions
 ring_vm_listfuncs_add
 Type: List *
 pList,*pList2
-Type: Item *
-pItem
 Type: int
 lMerge,x
 Type: VM *
@@ -27,13 +25,9 @@ Type: VM *
 pVM
 ring_vm_listfuncs_list
 Type: List *
-pList, *pList2
-Type: int
-x,y,nSize,nSize2
-Type: Items *
-pItems
-Type: Item *
-pItem
+pList
+Type: unsigned int
+x,nSize,nSize2
 Type: VM *
 pVM
 ring_vm_listfuncs_find
@@ -90,6 +84,8 @@ Type: int
 nParaCount
 Type: unsigned int
 x, nColumn
+Type: VM *
+pVM
 ring_vm_listfuncs_reverse
 Type: List *
 pList,*pList2,*pList3
@@ -109,3 +105,5 @@ pList
 ring_vm_listfuncs_refcount
 Type: List *
 pList
+Type: VM *
+pVM

@@ -1,6 +1,4 @@
 ring_vm_pushv
-Type: List *
-pList
 ring_vm_checknull
 Type: List *
 pVar
@@ -10,43 +8,40 @@ ring_vm_varpushv
 Type: List *
 pVar, *pList
 ring_vm_loadaddress
-Type: int
+Type: unsigned int
 x,lFound
-Type: FuncCall *
-pFuncCall
 ring_vm_assignment
 Type: List *
-pVar,*pList, *pList2
+pVar,*pList
 Type: String *
 pStr1, *pString
 Type: double
 nNum1
 Type: Item *
 pItem
-Type: int
-nBeforeEqual
+Type: unsigned int
+nBeforeEqual, nType
+Type: List *
+pObj
+Type: const char *
+cOP
+Type: void *
+pPtr
 ring_vm_inc
 Type: List *
 pVar
 ring_vm_loadapushv
 ring_vm_newline
 ring_vm_freestack
-Type: int
+Type: unsigned int
 nSP
 ring_vm_setreference
 Type: List *
 pList
-Type: int
+Type: unsigned int
 nType
 Type: void *
 pPointer
-ring_vm_list_copy
-Type: int
-x,nMax
-Type: List *
-pNewList2, *pSourceList
-Type: Item *
-pItem
 ring_vm_beforeequallist
 Type: String *
 pString
@@ -54,6 +49,10 @@ Type: char
 cStr[RING_MEDIUMBUF]
 Type: int
 nOutput
+Type: List *
+pObj
+Type: const char *
+cOP
 ring_vm_beforeequalitem
 Type: String *
 pString
@@ -61,14 +60,24 @@ Type: char
 cStr[RING_MEDIUMBUF]
 Type: int
 nOutput
+Type: List *
+pObj
+Type: const char *
+cOP
+ring_vm_varcontainsobjhaveoperatormethod
+Type: List *
+pObj
+ring_vm_itemcontainsobjhaveoperatormethod
+Type: List *
+pObj
 ring_vm_plusplus
 Type: List *
-pList
+pList, *pObj
 Type: Item *
 pItem
 ring_vm_minusminus
 Type: List *
-pList
+pList, *pObj
 Type: Item *
 pItem
 ring_vm_assignmentpointer
@@ -76,15 +85,15 @@ Type: List *
 pList, *pList2
 Type: Item *
 pItem
-Type: int
+Type: unsigned int
 x, lCont
 ring_vm_freeloadaddressscope
 ring_vm_loadaddressfirst
 ring_vm_printstack
-Type: int
+Type: unsigned int
 x,nSP
 ring_vm_len
-Type: int
+Type: unsigned int
 nSize
 Type: List *
 pVar, *pList
@@ -98,3 +107,4 @@ vTempItem
 ring_vm_isinsideloop
 Type: FuncCall *
 pFuncCall
+ring_vm_isstackpointertoobjstate

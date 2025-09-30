@@ -1,5 +1,6 @@
 ring_vmgcdata
 RING_VM_BITSFORREFCOUNT
+RING_VM_REFCOUNTMAX
 Parent: ListGCData
 Type: void *
 pContainer
@@ -33,6 +34,8 @@ Type: unsigned int
 lArgCache: 1
 Type: unsigned int
 nListType: 3
+Type: unsigned int
+lUnused: 1
 END:
 Type: ListGCData
 struct ListGCData
@@ -121,7 +124,7 @@ Type: PoolDataL3
 Mark: ->
 PoolDataL3 *
 Parent: VMState
-Type: int
+Type: unsigned int
 aNumbers[RING_VM_STATE_NUMBERS_COUNT]
 Type: void *
 aPointers[RING_VM_STATE_POINTERS_COUNT]
@@ -203,15 +206,26 @@ PoolManager *
 ring_gc_h
 RING_LISTREF_INC
 RING_LISTREF_DEC
-ring_vm_gc_cleardata(pItem)
-ring_vm_gc_newitemreference(pItem)
+ring_vm_gc_setfreefunc
+ring_vm_gc_removetrack
+Type: int
+nPos
+ring_vm_gc_freefunc
+ring_vm_gc_newitemreference
+ring_vm_gc_cleardata
+ring_vm_gc_deletelistinitem
+ring_vm_gc_finishitemdelete
+ring_vm_gc_deleteitem
+Type: VM *
+pVM
+Type: int
+nRefCount
 ring_vm_gc_checknewreference
 Type: Item *
 pItem
 ring_vm_gc_checkupdatereference
 Type: Item *
 pItem
-ring_vm_gc_deleteitem_gc
 ring_vm_gc_killreference
 Type: List *
 pList, *pList2
@@ -222,21 +236,24 @@ newstr
 Type: char
 cStr[RING_CHARBUF]
 ring_vm_gc_deletetemplists
-ring_vm_gc_freefunc
-ring_vm_gc_setfreefunc
-ring_vm_gc_deletelistinitem
-ring_vm_gc_listpointerismine
-Type: Item *
-pItem
-ring_vm_gc_listpointerisnotmine
-Type: Item *
-pItem
-ring_vm_gc_removetrack
+ring_vm_gc_checkvarerroronassignment
+Type: List *
+pList
+ring_vm_gc_checkitemerroronassignment
+Type: List *
+pList
+ring_vm_gc_checkbeforeassignment
+ring_vm_gc_removelistprotection
+Type: unsigned int
+x
+ring_vm_gc_removelistprotectionat
+Type: List *
+pList
+ring_vm_gc_isrefparameter
 Type: int
-nPos
-ring_list_iscopybyref
-ring_list_enablecopybyref
-ring_list_disablecopybyref
+lRef
+Type: List *
+pRef, *pVar, *pList
 ring_list_acceptlistbyref_gc
 Type: List *
 pRealList
@@ -245,13 +262,12 @@ pItem
 ring_list_setlistbyref_gc
 ring_list_updaterefcount_gc
 ring_list_newref_gc
-ring_list_isref
+Type: VM *
+pVM
 ring_list_assignreftovar_gc
 ring_list_assignreftoitem_gc
 Type: List *
 pList
-ring_list_isrefcontainer
-ring_list_clearrefdata
 ring_list_deleteref_gc
 Type: List *
 pVariable
@@ -259,66 +275,59 @@ Type: int
 nOPCode
 Type: RingState *
 pRingState
-ring_list_getrefcontainer
 ring_list_collectcycles_gc
 Type: List *
 aProcess, *pActiveList, *pSubList
-Type: int
+Type: unsigned int
 x,y,lDelete
 Type: Item *
 pItem
 ring_list_containssublist_gc
 Type: List *
 aProcess, *pActiveList, *pSubList
-Type: int
+Type: unsigned int
 x,y,lFound
 ring_list_iscircular_gc
-ring_list_checkrefinleftside
-ring_list_checkrefvarinleftside
-ring_list_getrefcount
-ring_list_isrefparameter
+ring_list_checkrefinleftside_gc
+ring_list_checkrefvarinleftside_gc
+ring_list_isref_gc
 Type: int
 lRef
-Type: List *
-pRef, *pVar, *pList
-ring_list_isdontref
-ring_list_enabledontref
-ring_list_disabledontref
-ring_list_disablelnewref
-ring_list_resetlnewref
-Type: List *
-pList
-ring_list_isnewref
-ring_list_isdontrefagain
-ring_list_enabledontrefagain
-ring_list_disabledontrefagain
-ring_list_setlisttype
-ring_list_getlisttype
-ring_list_isargcache
-ring_list_enableargcache
-ring_list_enableerroronassignment
-ring_list_disableerroronassignment
-ring_list_iserroronassignment
-ring_vm_checkvarerroronassignment
-Type: List *
-pList
-ring_vm_checkitemerroronassignment
-Type: List *
-pList
-ring_vm_checkbeforeassignment
-ring_vm_removelistprotection
+ring_list_isrefcontainer_gc
+ring_list_clearrefdata_gc
+ring_list_getrefcount_gc
+ring_list_getrefcountvalue_gc
 Type: int
-x
+nCount
+ring_list_isdontref_gc
+ring_list_enabledontref_gc
+ring_list_disabledontref_gc
+ring_list_islnewref_gc
+Type: int
+lNewRef
+ring_list_enablelnewref_gc
+ring_list_disablelnewref_gc
+ring_list_resetlnewref_gc
 Type: List *
 pList
-ring_vm_removelistprotectionat
-Type: List *
-pList
-ring_list_iserroronassignment2
-ring_list_enableerroronassignment2
-ring_list_disableerroronassignment2
-ring_list_enabledontdelete
-ring_list_disabledontdelete
+ring_list_isdontrefagain_gc
+ring_list_enabledontrefagain_gc
+ring_list_disabledontrefagain_gc
+ring_list_iscopybyref_gc
+ring_list_enablecopybyref_gc
+ring_list_disablecopybyref_gc
+ring_list_enableerroronassignment_gc
+ring_list_disableerroronassignment_gc
+ring_list_iserroronassignment_gc
+ring_list_enableerroronassignment2_gc
+ring_list_iserroronassignment2_gc
+ring_list_disableerroronassignment2_gc
+ring_list_setlisttype_gc
+ring_list_getlisttype_gc
+ring_list_isargcache_gc
+ring_list_enableargcache_gc
+ring_list_enabledontdelete_gc
+ring_list_disabledontdelete_gc
 ring_malloc
 Type: void *
 pMemory
@@ -337,7 +346,7 @@ Type: void *
 pBlockEnd
 Type: List *
 pBlocks, *pBlock
-Type: int
+Type: unsigned int
 x, lFound
 Type: RingState *
 pRingState
@@ -349,12 +358,6 @@ nTotal
 ring_state_realloc
 Type: void *
 pMemory
-Type: PoolData *
-pPoolData
-Type: PoolDataL2 *
-pPoolDataL2
-Type: PoolDataL3 *
-pPoolDataL3
 Type: int
 nLevel, nUseMalloc
 Type: size_t
@@ -365,7 +368,7 @@ pList
 Type: RingState *
 pRingState
 ring_state_unregisterblock
-Type: int
+Type: unsigned int
 x
 Type: List *
 pList
@@ -374,10 +377,10 @@ pRingState
 Type: void *
 pBlockStart
 ring_state_willunregisterblock
-Type: int
+Type: unsigned int
 x, x2, x3
 Type: List *
-pList, *pVar, *pList2
+pList, *pVar
 Type: Item *
 pItem, *pNewItem
 Type: Item
@@ -386,7 +389,6 @@ Type: RingState *
 pRingState
 Type: void *
 pBlockStart, *pBlockEnd
-ring_vm_gc_deleteitem
 ring_poolmanager_new
 ring_poolmanager_newblock
 Type: PoolData *
@@ -397,7 +399,7 @@ Type: PoolDataL3 *
 pMemoryL3
 Type: PoolDataStateLevel *
 pMemoryStateLevel
-Type: int
+Type: unsigned int
 x
 ring_poolmanager_allocate
 Type: void *
@@ -420,7 +422,7 @@ Type: PoolData *
 pMemory
 ring_poolmanager_deleteblockfromsubthread
 Type: PoolData *
-pMemory
+pMemory, *pNextMemory
 ring_vmstate_new
 Type: VMState *
 pVMState

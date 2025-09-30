@@ -4,13 +4,19 @@ pList
 Type: int
 x
 ring_vm_newscope
+ring_vm_newscopeid
+ring_vm_deletescope
+Type: List *
+pList
+Type: unsigned int
+x
 ring_vm_findvar
-Type: int
+Type: unsigned int
 x,nPos,nMax1
 Type: List *
 pList,*pList2
 ring_vm_findvar2
-Type: int
+Type: unsigned int
 nPC,nType,lPrivateError,nAssignmentPos
 Type: Item *
 pItem
@@ -43,27 +49,23 @@ pList
 ring_vm_addnewcpointervar
 Type: List *
 pList, *pList2
-ring_vm_deletescope
-Type: List *
-pList
-Type: ListBlocks *
-pArg
-Type: int
-x
-ring_vm_var_setprivateflag
-ring_vm_var_getprivateflag
+ring_vm_setvarprivateflag
+ring_vm_getvarprivateflag
 ring_vm_copyscopestolist
 Type: List *
 pNewList
-Type: int
+Type: unsigned int
 x
-ring_vm_newargcache
+ring_vm_notusingvarduringdef
 Type: int
+nCont
+ring_vm_newargcache
+Type: unsigned int
 x
 Type: List *
 pList
 ring_vm_deleteargcache
-Type: int
+Type: unsigned int
 x
 ring_vm_addstringarg
 Type: List *
@@ -85,3 +87,4 @@ ring_vm_setglobalscope
 ring_vm_getglobalscope
 Type: List *
 pList
+ring_vm_addvarpointertoscopehash

@@ -15,6 +15,8 @@ pList
 ring_vm_generallib_isstring
 ring_vm_generallib_isnumber
 ring_vm_generallib_islist
+Type: VM *
+pVM
 ring_vm_generallib_type
 Type: List *
 pList
@@ -22,6 +24,8 @@ ring_vm_generallib_isnull
 Type: char *
 cStr
 ring_vm_generallib_isobject
+Type: VM *
+pVM
 ring_vm_generallib_ispointer
 ring_vm_generallib_hex
 cStr
@@ -200,6 +204,8 @@ pList
 ring_vm_generallib_pointer2object
 Type: List *
 pList
+Type: VM *
+pVM
 ring_vm_generallib_nullpointer
 ring_vm_generallib_space
 Type: char *
@@ -282,7 +288,7 @@ cFile
 Type: List *
 pList
 Type: int
-lCase,lComments
+lCase,lComments,lScannerCommands
 ring_vm_generallib_state_stringtokens
 Type: RingState *
 pState
@@ -291,7 +297,7 @@ cString
 Type: List *
 pList
 Type: int
-lCase,lComments
+lCase,lComments,lScannerCommands
 ring_vm_generallib_state_scannererror
 Type: RingState *
 pState
@@ -303,12 +309,10 @@ nPC
 ring_vm_generallib_state_resume
 Type: RingState *
 pRingState
-Type: int
-nPC
 ring_vm_generallib_see
 Type: char *
 cString
-Type: int
+Type: unsigned int
 x
 cStr
 Type: List *
@@ -357,12 +361,10 @@ cInput[RING_LARGEBUF]
 Type: char *
 cLine
 Type: int
-nSize,nOutput
+nSize
 ring_vm_generallib_getchar
 Type: char
 cStr[RING_CHARBUF]
-Type: int
-nOutput
 ring_vm_generallib_clock
 Type: clock_t
 nNum1

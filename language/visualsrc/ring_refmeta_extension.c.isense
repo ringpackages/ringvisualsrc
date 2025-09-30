@@ -1,23 +1,21 @@
 ring_refmeta_extension_h
 ring_vm_refmeta_loadfunctions
 ring_vm_refmeta_locals
-Type: VM *
-pVM
-Type: int
+Type: unsigned int
 x
 Type: List *
 pList, *pList2, *pList3
 ring_vm_refmeta_globals
 Type: VM *
 pVM
-Type: int
+Type: unsigned int
 x
 Type: List *
 pList, *pList2, *pList3
 ring_vm_refmeta_functions
 Type: VM *
 pVM
-Type: int
+Type: unsigned int
 x
 Type: List *
 pList, *pList2
@@ -29,9 +27,7 @@ pList
 Type: CFunction *
 pCFunc
 ring_vm_refmeta_islocal
-Type: VM *
-pVM
-Type: int
+Type: unsigned int
 x
 Type: List *
 pList, *pList2
@@ -40,7 +36,7 @@ cStr
 ring_vm_refmeta_isglobal
 Type: VM *
 pVM
-Type: int
+Type: unsigned int
 x
 Type: List *
 pList, *pList2
@@ -49,7 +45,7 @@ cStr
 ring_vm_refmeta_isfunction
 Type: VM *
 pVM
-Type: int
+Type: unsigned int
 x
 Type: List *
 pList, *pList2
@@ -65,14 +61,14 @@ pCFunc
 ring_vm_refmeta_packages
 Type: VM *
 pVM
-Type: int
+Type: unsigned int
 x
 Type: List *
 pList, *pList2
 ring_vm_refmeta_ispackage
 Type: VM *
 pVM
-Type: int
+Type: unsigned int
 x
 Type: List *
 pList, *pList2
@@ -81,14 +77,14 @@ cStr
 ring_vm_refmeta_classes
 Type: VM *
 pVM
-Type: int
+Type: unsigned int
 x
 Type: List *
 pList, *pList2
 ring_vm_refmeta_isclass
 Type: VM *
 pVM
-Type: int
+Type: unsigned int
 x
 Type: List *
 pList, *pList2
@@ -97,7 +93,7 @@ cStr
 ring_vm_refmeta_packageclasses
 Type: VM *
 pVM
-Type: int
+Type: unsigned int
 x
 Type: List *
 pList, *pList2, *pList3
@@ -106,7 +102,7 @@ cStr
 ring_vm_refmeta_ispackageclass
 Type: VM *
 pVM
-Type: int
+Type: unsigned int
 x
 Type: List *
 pList, *pList2
@@ -117,6 +113,8 @@ Type: List *
 pList
 Type: char *
 cStr
+Type: VM *
+pVM
 ring_vm_refmeta_objectid
 Type: List *
 pList
@@ -125,29 +123,35 @@ cStr[RING_MEDIUMBUF]
 ring_vm_refmeta_attributes
 Type: List *
 pList, *pList2
-Type: int
+Type: unsigned int
 x
+Type: VM *
+pVM
 ring_vm_refmeta_methods
 Type: List *
 pList, *pList2
-Type: int
+Type: unsigned int
 x
+Type: VM *
+pVM
 ring_vm_refmeta_isattribute
 Type: List *
 pList
-Type: int
-x
 Type: char *
 cStr
+Type: VM *
+pVM
 ring_vm_refmeta_ismethod
 Type: List *
 pList
 Type: char *
 cStr
+Type: VM *
+pVM
 ring_vm_refmeta_isprivateattribute
 Type: List *
 pList
-Type: int
+Type: unsigned int
 x
 Type: char *
 cStr
@@ -156,23 +160,27 @@ pVM
 ring_vm_refmeta_isprivatemethod
 Type: List *
 pList
-Type: int
+Type: unsigned int
 x
 Type: char *
 cStr
+Type: VM *
+pVM
 ring_vm_refmeta_addattribute
 Type: List *
 pList, *pList2
 Type: char *
 cStr
-Type: int
+Type: unsigned int
 x
+Type: VM *
+pVM
 ring_vm_refmeta_addmethod
 Type: List *
 pList, *pList2, *pList3
 Type: char *
 cStr
-Type: int
+Type: unsigned int
 x
 Type: VM *
 pVM
@@ -181,15 +189,19 @@ Type: List *
 pList
 Type: char *
 cStr
-Type: int
+Type: unsigned int
 x
+Type: VM *
+pVM
 ring_vm_refmeta_setattribute
 Type: List *
 pList
 Type: char *
 cStr
-Type: int
+Type: unsigned int
 x
+Type: VM *
+pVM
 ring_vm_refmeta_mergemethods
 Type: int
 x
@@ -210,3 +222,5 @@ Type: List *
 pList
 Type: char *
 cStr
+Type: VM *
+pVM
