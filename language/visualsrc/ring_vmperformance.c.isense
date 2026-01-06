@@ -1,3 +1,4 @@
+ring_vm_pushvarptr
 ring_vm_pushp
 ring_vm_pushplocal
 ring_vm_pusharg

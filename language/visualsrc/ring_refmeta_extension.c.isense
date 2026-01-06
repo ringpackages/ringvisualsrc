@@ -45,10 +45,6 @@ cStr
 ring_vm_refmeta_isfunction
 Type: VM *
 pVM
-Type: unsigned int
-x
-Type: List *
-pList, *pList2
 Type: char *
 cStr
 ring_vm_refmeta_iscfunction
@@ -203,8 +199,8 @@ x
 Type: VM *
 pVM
 ring_vm_refmeta_mergemethods
-Type: int
-x
+Type: unsigned int
+x, nSize
 Type: List *
 pList, *pList2, *pList3
 Type: VM *

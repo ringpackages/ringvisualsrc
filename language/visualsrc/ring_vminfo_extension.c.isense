@@ -11,7 +11,7 @@ Type: VM *
 pVM
 Type: List *
 pList, *pList2
-Type: int
+Type: unsigned int
 x
 Type: FuncCall *
 pFuncCall
@@ -67,9 +67,11 @@ pActiveMem
 Type: const char *
 cStr
 Type: int
-nScope,nSize
+nScope,nSize,x
 Type: VMState *
 pVMState
+Type: List
+aScopes[RING_VM_STACK_SIZE]
 ring_vm_info_ringvmpasserror
 Type: VM *
 pVM
@@ -100,3 +102,34 @@ pList
 ring_vm_info_ringvmruncode
 Type: VM *
 pVM
+ring_vm_info_ringvmringolists
+Type: VM *
+pVM
+Type: List *
+pList
+Type: List *
+pListFunctions, *pListClasses, *pListPackages, *pListCode, *pListFiles, *pListStack
+Type: unsigned int
+nSize
+Type: int
+lOutput
+Type: char *
+cBuffer
+ring_vm_info_ringvmtranslatecfunction
+Type: VM *
+pVM
+Type: CFunction *
+pCFunc
+Type: const char *
+cStr, *cStr2
+Type: RingState *
+pRingState
+Type: List *
+pTranslatedCFunctions
+ring_vm_info_ringvmwriteringo
+Type: VM *
+pVM
+Type: List *
+pList
+Type: List *
+pListFunctions, *pListClasses, *pListPackages, *pListCode, *pListFiles

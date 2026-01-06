@@ -16,6 +16,7 @@ Type: List *
 pList
 Type: FuncCall *
 pFuncCall
+ring_vm_aftercfunction
 ring_vm_preparecallmethod
 Type: List *
 pList
@@ -63,6 +64,12 @@ x, lFound
 ring_vm_anonymous
 Type: char *
 cStr
+Type: FuncCall *
+pFuncCall
+Type: char
+lCanCallAsMethod
+Type: List *
+pList
 ring_vm_prevtempmem
 Type: List *
 pTemp
@@ -100,3 +107,6 @@ x
 ring_vm_optionalfunc
 Type: VM *
 pVM
+ring_vm_findfuncusinghashtable
+Type: List *
+pFuncList

@@ -186,6 +186,8 @@ Type: List *
 pDefinedGlobals
 Type: List *
 pTrackedVariables
+Type: List *
+pLiterals
 Type: String *
 pPackageName
 Type: String *
@@ -625,12 +627,8 @@ Type: unsigned int
 x,x2,x3,x4,lFound
 Type: List *
 pList, *pList2, *pList3, *pPackageList
-Type: const char *
-cString
-Type: char
-cPackageName[RING_HUGEBUF]
-Type: char
-cClassName[RING_HUGEBUF]
+Type: char *
+cString, *cPackageName, *cClassName
 ring_vm_deletecfunctions
 Type: CFunction *
 pCFunc
@@ -665,7 +663,7 @@ Type: List *
 pIns
 ring_vm_afterscopeidoverflow
 Type: unsigned int
-x,y,nCount
+x,nCount
 Type: ByteCode *
 pByteCode
 ring_vm_deleteallbytecode

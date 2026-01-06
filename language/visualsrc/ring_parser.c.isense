@@ -23,6 +23,14 @@ nClassMark
 Type: unsigned int
 nBracesCounter
 Type: unsigned int
+nIfCounter
+Type: unsigned int
+nSwitchCounter
+Type: unsigned int
+nTryCatchCounter
+Type: unsigned int
+nDoAgainCounter
+Type: unsigned int
 nActiveToken
 Type: unsigned int
 nTokensCount
@@ -225,6 +233,10 @@ ring_parser_isendline
 ring_parser_settoken
 ring_parser_isanykeyword
 ring_parser_isoperator2
+ring_parser_keywordtoidentifier
+Type: List *
+pList
+ring_parser_processkeywords
 ring_parser_error
 Type: int
 nRingActiveFile

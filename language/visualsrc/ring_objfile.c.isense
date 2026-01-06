@@ -1,20 +1,21 @@
 ring_objfile_h
-DEBUG_OBJFILE
 RING_OBJFILE_READFROMFILE
 RING_OBJFILE_READFROMSTRING
 RING_OBJFILE_ITEMSPERFUNCTION
 RING_OBJFILE_ITEMSPERFUNCTION2
 RING_OBJFILE_VERSION
 RING_OBJFILE_VERSIONSTRINGSIZE
+RING_OBJFILE_MINSIZE
 RING_OBJFILE_KEYSIZE
 RING_OBJFILE_KEYSTRSIZE
 RING_OBJFILE_KEYSTRING
 RING_OBJFILE_FILETYPESTR
 RING_OBJFILE_FILETYPESTRCOUNT
 ring_objfile_writefile
-fObj
 Type: char
 cFileName[RING_HUGEBUF]
+ring_objfile_writecontent
+fObj
 ring_objfile_writelist
 Type: List *
 pList2
@@ -33,20 +34,14 @@ Type: int
 lFail
 ring_objfile_processfile
 fObj
-Type: signed char
-c
-Type: int
-nActiveList,nValue,nBraceEnd,nOutput
-Type: double
-dValue
+Type: long int
+nSize
+Type: size_t
+nCount
 Type: char *
-cString
-Type: char
-cKey[RING_OBJFILE_KEYSTRSIZE]
-Type: char
-cFileType[RING_MEDIUMBUF]
-Type: List *
-pList
+cBuffer
+Type: unsigned int
+lOutput
 ring_objfile_processstring
 Type: signed char
 c
@@ -63,18 +58,12 @@ cFileType[RING_MEDIUMBUF]
 Type: List *
 pList
 ring_objfile_xorstring
-Type: int
+Type: unsigned int
 x
 ring_objfile_readc
-Type: int
+Type: unsigned int
 x
-Type: char *
-cData
 ring_objfile_getc
-Type: char
-c
-Type: char *
-cData
 ring_objfile_writeCfile
 fCode, *fCode2
 Type: char
@@ -93,7 +82,7 @@ cString
 Type: char
 cFileName[RING_HUGEBUF]
 ring_objfile_writebytecode
-Type: int
+Type: unsigned int
 x,x2,nReg,x3,nMax
 Type: List *
 pIns
